@@ -215,14 +215,14 @@ Response의 형태는 아래와 같이 통일한다.
    
 ```
 { 
-	"success": true,
+	"success": true,
 	"data": {
 		"tmax":{}
 		"somethings":[{},{}]
 	}
 }
 { 
-	"success": false,
+	"success": false,
 	"error": {
 		"code": "E1101",
 		"message": "login fail"
