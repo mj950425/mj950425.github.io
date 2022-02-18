@@ -5,6 +5,6 @@ main:
   - title: "About"
     url: https://mmistakes.github.io/minimal-mistakes/about/
   - title: "Category"
-    url: /year-archive/
+    url: /categories/
   - title: "Github"
     url: https://github.com/mj950425
