@@ -7,7 +7,7 @@ sidebar_main: true
 search: false
 ---
 
-{% assign posts = site.categories.spring | sort:"date" | reverse %}
+{% assign posts = site.categories.spring %}
 
 {% for post in posts %}
 {% include archive-single.html type=page.entries_layout %}
