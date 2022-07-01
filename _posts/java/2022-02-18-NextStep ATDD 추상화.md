@@ -1,3 +1,13 @@
+---
+title: '2022-02-18-NextStep ATDD 추상화'
+excerpt: ' '
+categories:
+    - java
+tag:
+    - java
+toc: false
+---
+
 # NextStep ATDD 추상화 리팩토링
 
 **🙋‍♀️이번 추상화 미션을 진행하면서 배워가는게 많았습니다.**

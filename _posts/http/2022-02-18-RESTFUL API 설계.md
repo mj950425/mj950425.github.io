@@ -1,3 +1,13 @@
+---
+title: '2022-02-18-RESTFUL API 설계'
+excerpt: ' '
+categories:
+    - http
+tag:
+    - http
+toc: false
+---
+
 # API-convention
 
 RESETFUL 컨벤션은 확고한 기반이 있고 그 뒤에 유연하게 반응해야 잘 지켜진다고 생각합니다.

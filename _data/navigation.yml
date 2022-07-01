@@ -8,3 +8,5 @@ main:
       url: categories/
     - title: 'Github'
       url: https://github.com/mj950425
+    - title: 'Tags'
+      url: '/tags/'
