@@ -1,10 +1,10 @@
 # main links
 main:
-  # - title: ""
-  #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  - title: "About"
-    url: https://mmistakes.github.io/minimal-mistakes/about/
-  - title: "Category"
-    url: /categories/
-  - title: "Github"
-    url: https://github.com/mj950425
+    # - title: ""
+    #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+    - title: 'About'
+      url: https://mmistakes.github.io/minimal-mistakes/about/
+    - title: 'Category'
+      url: /year-archive/
+    - title: 'Github'
+      url: https://github.com/mj950425
