@@ -1,7 +1,7 @@
 ---
 layout: archive
-permalink: /categories/etc
-title: 'Post about etc.'
+permalink: /categories/database
+title: 'Post about database.'
 author_profile: true
 sidebar_main: true
 search: false
