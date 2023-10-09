@@ -22,6 +22,6 @@ sidebar: true
 
 <br><br><br>
 
-## 이민준 / MIN JOON LEE
+## 이민준 / MINJOON LEE
 
 <!--author-->
