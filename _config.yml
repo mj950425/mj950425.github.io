@@ -64,6 +64,8 @@ menu:
     submenu:
       - title:         만들면서 배우는 JPA
         url:           /nextstep-jpa/
+      - title:         도메인 주도 개발 시작하기
+        url:           /DDD-start/
   - title:             회고
     url:               /review/
 
