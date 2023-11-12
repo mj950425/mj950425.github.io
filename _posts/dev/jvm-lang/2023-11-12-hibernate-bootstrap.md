@@ -144,6 +144,7 @@ hibernate의 버전과 hibernate.properties 파일 존재 여부 서비스 초�
 아래는 자바 타입과 하이버네이트의 래핑 객체와의 매핑을 설정합니다. 예를 들어서 boolean은 BooleanType라는 클래스로 매핑합니다.
 
 TypeConfiguration에서 아래와 같이 등록합니다. 하이버네이트에서는 자바 타입을 직접 다루는게 아니라 이러한 객체로 다룹니다.
+<br/>
 ![img.png](/assets/img/jvm-lang/jpa-bootstrap/img.png)
 
 ```
