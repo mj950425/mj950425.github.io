@@ -18,6 +18,9 @@ description: >
 
 TF로 참여해서 페이즈원의 대부분 기능에 대한 개발에 참여했고, 그 과정에서 겪었던 시행착오들을 적어보고자 합니다.
 
+<br/>
+![그림2](/assets/img/review/packageproject-review/img_2.png)
+
 # 모듈 구조
 
 먼저 기술 스택은 스프링과 코틀린입니다.
@@ -204,7 +207,5 @@ TF로 참여했었기 때문에 운영을 경험해보지 못한게 아쉽기도
 
 패키지 상품이 앞으로 승승장구하길 기대하며 회고를 마칩니다.
 
-<br/>
-![그림2](/assets/img/review/packageproject-review/img_2.png)
 
  
