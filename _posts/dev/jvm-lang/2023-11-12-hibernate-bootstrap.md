@@ -30,7 +30,7 @@ JPA는 워낙 방대한 코드로 이루어져있어서 모든 코드들을 파�
 이로 하여금, 개발자가 빈의 모든 의존성이 주입된 후에 필요한 추가적인 초기화 작업을 할 수 있습니다. 자세한 내용은 [이곳](https://dev-coco.tistory.com/170)을 확인면 알 수 있습니다.
 
 ![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_2.png)*afterPropertiesSet 메소드 호출 부분입니다*
-</br>
+<br>
 JPA가 제공하는 **AbstractEntityManagerFactoryBean**가 afterProperties를 실행합니다.
 
 ![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_19.png)*AbstractEntityManagerFactoryBean의 afterProperties 호출 부분입니다*
@@ -64,9 +64,11 @@ PersistenceUnitInfo는 데이터베이스 연결 설정, 엔티티 클래스 목
 
 그리고 여러 **Binder는** 직접적으로 엔티티 클래스 정보를 갖고 메타데이터에 매핑하는 역할을 맡습니다. 아래 사진보다도 더 다양한 바인더들이 존재합니다.
 
-![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_13.png)*엔티티 바인더*
-![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_14.png)*어노테이션 바인더*
-![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_15.png)*콜랙션 바인더*
+![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_13.png)
+*엔티티 바인더*
+![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_14.png)
+<br>
+*어노테이션 바인더*
 
 다음으로는 이제 이벤트 리스너들을 등록합니다.
 
@@ -75,7 +77,7 @@ PersistenceUnitInfo는 데이터베이스 연결 설정, 엔티티 클래스 목
 인터페이스에 대한 메소드 참조를 넘겨주면, 첫번째 인자가 수신자가되어 해당 메소드를 수행하게됩니다. 
 
 ![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_5.png)*이벤트를 호출하는 과정입니다*
-</br>
+<br>
 ![img.png](/assets/img/jvm-lang/jpa-bootstrap/img_12.png)*이벤트들이 응답하는 과정입니다*
 
 이렇게 사용될 리스너들을 보관하는곳이 **EventListenerGroup**이고 등록을 시작하는 클래스가 아래 **FastSessionServices** 클래스입니다. 
