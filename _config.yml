@@ -59,10 +59,6 @@ menu:
         url:           /network/
       - title:         JAVA & KOTLIN
         url:           /jvm-lang/
-      - title:         REDIS
-        url:           /redis/
-      - title:         DB
-        url:           /db/
   - title:             책 & 강의 정리
     url:               /study/
     submenu:
