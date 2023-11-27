@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: 넥스트스탭 만들면서 배우는 JPA
+title: DB
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: nextstep-jpa
+slug: DB
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  만들면서 배우는 JPA 학습 내용을 정리합니다.
+  This is a DB study log.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
@@ -19,4 +19,3 @@ description: >
 # DON'T USE THIS SETTING IN YOUR CATEGORIES!
 sitemap: true
 ---
-

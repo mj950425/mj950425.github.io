@@ -7,11 +7,11 @@ categories:
 ---
 # JPA EntityManagerFactory가 만들어지는 과정을 알아보자
 
-# JPA EntityManagerFactory가 만들어지는 과정을 알아보자
-
 이번 포스팅에서는 JPA의 EntityManagerFactory가 만들어지는 과정에 대해서 러프하게 적어봤습니다. 
 
 JPA는 워낙 방대한 코드로 이루어져있어서 모든 코드들을 파악하는것은 상당히 어렵기 때문에, 감을 익히는 정도로 EntityManagerFacotry의 생성 흐름에 대해서 작성해봤습니다.
+
+# EntityManagerFactory가 만들어지는 과정
 
 먼저 스프링 빈의 순서는 컨테이너 _생성 -> 등록 -> 인스턴스화 -> 의존성 주입 -> 초기화 콜백 -> 빈 사용 -> 종료 콜백_ 으로 이뤄집니다.
 
