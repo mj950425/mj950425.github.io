@@ -130,3 +130,191 @@ C. Create your RDS instance separately and pass its DNS name to your app's DB co
 D. Create your RDS instance separately and pass its DNS name to your's DB connection string as an environment variable Alter its security group to allow access to It from hosts in your application subnets.
 
 정답 : C
+
+---
+Q11
+Your company has an on-premises multi-tier PHP web application, which recently experienced downtime due to a large burst in web traffic due to a company announcement Over the coming days, you are expecting similar announcements to drive similar unpredictable bursts, and are looking to find ways to quickly improve your infrastructures ability to handle unexpected increases in traffic.
+The application currently consists of 2 tiers a web tier which consists of a load balancer and several Linux Apache web servers as well as a database tier which hosts a Linux server hosting a MySQL database.
+Which scenario below will provide full site functionality, while helping to improve the ability of your application in the short timeframe required?
+A. Failover environment: Create an S3 bucket and configure it for website hosting. Migrate your DNS to Route53 using zone file import, and leverage Route53 DNS failover to failover to the S3 hosted website.
+B. Hybrid environment: Create an AMI, which can be used to launch web servers in EC2. Create an Auto Scaling group, which uses the AMI to scale the web tier based on incoming traffic. Leverage Elastic Load Balancing to balance traffic between on-premises web servers and those hosted in AWS.
+C. Offload traffic from on-premises environment: Setup a CIoudFront distribution, and configure CloudFront to cache objects from a custom origin. Choose to customize your object cache behavior, and select a TTL that objects should exist in cache.
+D. Migrate to AWS: Use VM Import/Export to quickly convert an on-premises web server to an AMI. Create an Auto Scaling group, which uses the imported AMI to scale the web tier based on incoming traffic. Create an RDS read replica and setup replication between the RDS instance and on-premises MySQL server to migrate the database.
+
+정답 : B
+
+---
+Q12
+You are implementing AWS Direct Connect. You intend to use AWS public service end points such as Amazon S3, across the AWS Direct Connect link. You want other Internet traffic to use your existing link to an Internet Service Provider.
+What is the correct way to configure AWS Direct connect for access to services such as Amazon S3?
+A. Configure a public Interface on your AWS Direct Connect link. Configure a static route via your AWS Direct Connect link that points to Amazon S3 Advertise a default route to AWS using BGP.
+B. Create a private interface on your AWS Direct Connect link. Configure a static route via your AWS Direct connect link that points to Amazon S3 Configure specific routes to your network in your VPC.
+C. Create a public interface on your AWS Direct Connect link. Redistribute BGP routes into your existing routing infrastructure; advertise specific routes for your network to AWS.
+D. Create a private interface on your AWS Direct connect link. Redistribute BGP routes into your existing routing infrastructure and advertise a default route to AWS.
+
+정답 : C
+다이나믹 링크의 공개 인터페이스 -> 공개적으로 노출된 서비스에 접근할떄 사용됩니다. 온프레미스에서는 내부선으로 빠르게 접근하면서, 인터넷을 통한 접근도 가능합니다. 반면에 프라이빗 인터페이스는 인터넷에서 접근이 불가능합니다.
+BGP -> Direct Connect에서는 BGP를 사용하여 AWS와 고객 네트워크 간에 라우팅 정보를 교환합니다.
+
+---
+Q13
+Your application is using an ELB in front of an Auto Scaling group of web/application servers deployed across two AZs and a Multi-AZ RDS Instance for data persistence.
+The database CPU is often above 80% usage and 90% of I/O operations on the database are reads. To improve performance you recently added a single-node
+Memcached ElastiCache Cluster to cache frequent DB query results. In the next weeks the overall workload is expected to grow by 30%.
+Do you need to change anything in the architecture to maintain the high availability or the application with the anticipated additional load? Why?
+A. Yes, you should deploy two Memcached ElastiCache Clusters in different AZs because the RDS instance will not be able to handle the load if the cache node fails.
+B. No, if the cache node fails you can always get the same data from the DB without having any availability impact.
+C. No, if the cache node fails the automated ElastiCache node recovery feature will prevent any availability impact.
+D. Yes, you should deploy the Memcached ElastiCache Cluster with two nodes in the same AZ as the RDS DB master instance to handle the load if one cache node fails.
+
+정답 : A
+
+---
+Q14
+An ERP application is deployed across multiple AZs in a single region. In the event of failure, the Recovery Time Objective (RTO) must be less than 3 hours, and the Recovery Point Objective (RPO) must be 15 minutes. The customer realizes that data corruption occurred roughly 1.5 hours ago.
+What DR strategy could be used to achieve this RTO and RPO in the event of this kind of failure?
+A. Take hourly DB backups to S3, with transaction logs stored in S3 every 5 minutes.
+B. Use synchronous database master-slave replication between two availability zones.
+C. Take hourly DB backups to EC2 Instance store volumes with transaction logs stored In S3 every 5 minutes.
+D. Take 15 minute DB backups stored In Glacier with transaction logs stored in S3 every 5 minutes.
+
+정답 : A
+
+RPO (복구 지점 목표):
+
+RPO는 재해가 발생했을 때 손실될 수 있는 데이터의 최대 허용 시간을 의미합니다.
+예를 들어, RPO가 1시간이라면, 최근 1시간 이내의 데이터는 손실될 수 있음을 의미합니다.
+RPO는 데이터 백업 빈도와 직접적으로 관련이 있으며, 더 짧은 RPO는 더 자주 데이터를 백업해야 함을 의미합니다.
+
+RTO는 재해 발생 후 서비스나 시스템을 정상적으로 복구하는 데 걸리는 시간을 의미합니다.
+예를 들어, RTO가 3시간이라면, 시스템이나 서비스가 중단된 후 3시간 이내에 복구되어야 한다는 것을 의미합니다.
+RTO는 시스템 복구 속도와 관련이 있으며, 더 짧은 RTO는 더 빠른 복구 메커니즘을 필요로 합니다.
+
+B : 마스터의 잘못된 데이터가 슬레이브까지 전파되면 돌아가는게 불가능합니다.
+C : ebs 저장은 영구적이지않습니다.
+D : glacier는 조회가 오래걸립니다. 3-5시간이 평균적으로 걸립니다.
+
+---
+Q15
+You are designing the network infrastructure for an application server in Amazon VPC. Users will access all application instances from the Internet, as well as from an on-premises network. The on-premises network is connected to your VPC over an AWS Direct Connect link.
+How would you design routing to meet the above requirements?
+A. Configure a single routing table with a default route via the Internet gateway. Propagate a default route via BGP on the AWS Direct Connect customer router. Associate the routing table with all VPC subnets.
+B. Configure a single routing table with a default route via the Internet gateway. Propagate specific routes for the on-premises networks via BGP on the AWS Direct Connect customer router. Associate the routing table with all VPC subnets.
+C. Configure a single routing table with two default routes: on to the Internet via an Internet gateway, the other to the on-premises network via the VPN gateway. Use this routing table across all subnets in the VPC.
+D. Configure two routing tables: on that has a default router via the Internet gateway, and other that has a default route via the VPN gateway. Associate both routing tables with each VPC subnet.
+
+정답 : B
+
+---
+Q16
+You control access to S3 buckets and objects with:
+A. Identity and Access Management (IAM) Policies.
+B. Access Control Lists (ACLs).
+C. Bucket Policies.
+D. All of the above
+
+정답 : D
+
+---
+Q17
+The AWS IT infrastructure that AWS provides, complies with the following IT security standards, including:
+A. SOC 1/SSAE 16/ISAE 3402 (formerly SAS 70 Type II), SOC 2 and SOC 3
+B. FISMA, DIACAP, and FedRAMP
+C. PCI DSS Level 1, ISO 27001, ITAR and FIPS 140-2
+D. HIPAA, Cloud Security Alliance (CSA) and Motion Picture Association of America (MPAA)
+E. All of the above
+
+정답 : E
+
+---
+Q18
+Auto Scaling requests are signed with a _________ signature calculated from the request and the user's private key.
+A. SSL
+B. AES-256
+C. HMAC-SHA1
+D. X.509
+
+정답 : C
+
+---
+Q19
+The following policy can be attached to an IAM group. It lets an IAM user in that group access a "home directory" in AWS S3 that matches their user name using the console.
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Action": ["s3:*"],
+"Effect": "Allow",
+"Resource": ["arn:aws:s3:::bucket-name"],
+"Condition":{"StringLike":{"s3:prefix":["home/${aws:username}/*"]}}
+},
+{
+"Action":["s3:*"],
+"Effect":"Allow",
+"Resource": ["arn:aws:s3:::bucket-name/home/${aws:username}/*"]
+}
+]
+}
+A. True
+B. False
+
+정답 : B
+
+아래는 지피티의 답변입니다.
+
+아래처럼 s3에 모든 권한이 부여됐는데 버킷을 볼 수가없어?
+"Action":["s3:*"],
+
+ChatGPT
+IAM 정책에서 "Action":["s3:*"]로 설정되어 있다면 이론적으로는 모든 S3 관련 작업에 대한 권한이 부여된 것처럼 보입니다. 그러나 AWS S3 콘솔을 통해 버킷을 볼 때, 단순히 특정 작업에 대한 권한을 부여하는 것만으로는 충분하지 않습니다.
+
+AWS S3 콘솔을 사용하여 버킷을 탐색하려면 사용자는 두 가지 특별한 권한이 필요합니다. 첫 번째는 'ListAllMyBuckets' 작업입니다. 이 작업은 사용자가 AWS 계정의 모든 버킷 목록을 볼 수 있게 해줍니다. 두 번째는 'GetBucketLocation' 작업입니다. 이 작업은 사용자가 S3 콘솔에 처음 접속할 때 버킷의 위치 정보를 가져오는 데 필요합니다.
+
+따라서, 비록 "s3:*"로 모든 S3 작업에 대한 권한이 부여되었다고 해도, 이 두 가지 특별한 작업에 대한 권한이 명시적으로 포함되어 있지 않다면 사용자는 S3 콘솔을 통해 버킷을 볼 수 없습니다. 이것이 해당 IAM 정책이 S3 콘솔을 사용하여 버킷을 볼 수 있도록 충분하지 않은 이유입니다.
+
+---
+Q20
+What does elasticity mean to AWS?
+A. The ability to scale computing resources up easily, with minimal friction and down with latency.
+B. The ability to scale computing resources up and down easily, with minimal friction.
+C. The ability to provision cloud computing resources in expectation of future demand.
+D. The ability to recover from business continuity events with minimal friction.
+
+정답 : B
+
+---
+Q21
+The following are AWS Storage services? (Choose two.)
+A. AWS Relational Database Service (AWS RDS)
+B. AWS ElastiCache
+C. AWS Glacier
+D. AWS Import/Export
+
+정답 : A, C
+
+---
+Q22
+How is AWS readily distinguished from other vendors in the traditional IT computing landscape?
+A. Experienced. Scalable and elastic. Secure. Cost-effective. Reliable
+B. Secure. Flexible. Cost-effective. Scalable and elastic. Global
+C. Secure. Flexible. Cost-effective. Scalable and elastic. Experienced
+D. Flexible. Cost-effective. Dynamic. Secure. Experienced.
+
+정답 : B
+
+---
+Q23
+You have launched an EC2 instance with four (4) 500 GB EBS Provisioned IOPS volumes attached. The EC2 instance is EBS-Optimized and supports 500 Mbps throughput between EC2 and EBS. The four EBS volumes are configured as a single RAID 0 device, and each Provisioned IOPS volume is provisioned with 4,000
+IOPS (4,000 16KB reads or writes), for a total of 16,000 random IOPS on the instance. The EC2 instance initially delivers the expected 16,000 IOPS random read and write performance. Sometime later, in order to increase the total random I/O performance of the instance, you add an additional two 500 GB EBS Provisioned
+IOPS volumes to the RAID. Each volume is provisioned to 4,000 IOPs like the original four, for a total of 24,000 IOPS on the EC2 instance. Monitoring shows that the EC2 instance CPU utilization increased from 50% to 70%, but the total random IOPS measured at the instance level does not increase at all.
+What is the problem and a valid solution?
+A. The EBS-Optimized throughput limits the total IOPS that can be utilized; use an EBSOptimized instance that provides larger throughput.
+B. Small block sizes cause performance degradation, limiting the I/O throughput; configure the instance device driver and filesystem to use 64KB blocks to increase throughput.
+C. The standard EBS Instance root volume limits the total IOPS rate; change the instance root volume to also be a 500GB 4,000 Provisioned IOPS volume.
+D. Larger storage volumes support higher Provisioned IOPS rates; increase the provisioned volume storage of each of the 6 EBS volumes to 1TB.
+E. RAID 0 only scales linearly to about 4 devices; use RAID 0 with 4 EBS Provisioned IOPS volumes, but increase each Provisioned IOPS EBS volume to 6,000 IOPS.
+
+
+
+
+
