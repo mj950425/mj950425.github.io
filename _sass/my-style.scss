@@ -35,22 +35,30 @@
   color: grey;
 }
 
-.menu-wrapper{
+.menu-wrapper {
   display: flex;
   text-align: left;
   margin-left: 10%;
   margin-bottom: 0%;
-  
-  input[type=checkbox]{
+  width: 200px;
+  min-width: 200px;
+  overflow-y: scroll;
+
+  input[type=checkbox] {
     display: none;
   }
-  
-  input[type=checkbox] ~ ul{
+
+  input[type=checkbox] ~ ul {
     display: none;
     list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
   }
-  
-  input[type=checkbox]:checked ~ ul{
+
+  input[type=checkbox]:checked ~ ul {
     display: block;
+    max-height: 500px;
+    overflow: auto;
   }
 }
