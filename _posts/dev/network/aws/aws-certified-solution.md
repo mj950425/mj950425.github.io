@@ -481,68 +481,350 @@ D. Setup an Auto Scaling group of EC2 syslogd servers, store the logs on S3, use
 
 ---
 Q26
-A newspaper organization has an on-premises application which allows the public to search its back catalogue and retrieve individual newspaper pages via a website written in Java. They have scanned the old newspapers into JPEGs (approx 17TB) and used Optical Character Recognition (OCR) to populate a commercial search product. The hosting platform and software are now end of life and the organization wants to migrate its archive to AWS and produce a cost efficient architecture and still be designed for availability and durability.
+A newspaper organization has an on-premises application which allows the public to search its back catalogue and
+retrieve individual newspaper pages via a website written in Java. They have scanned the old newspapers into JPEGs (
+approx 17TB) and used Optical Character Recognition (OCR) to populate a commercial search product. The hosting platform
+and software are now end of life and the organization wants to migrate its archive to AWS and produce a cost efficient
+architecture and still be designed for availability and durability.
 Which is the most appropriate?
-A. Use S3 with reduced redundancy lo store and serve the scanned files, install the commercial search application on EC2 Instances and configure with auto- scaling and an Elastic Load Balancer.
-B. Model the environment using CloudFormation use an EC2 instance running Apache webserver and an open source search application, stripe multiple standard EBS volumes together to store the JPEGs and search index.
-C. Use S3 with standard redundancy to store and serve the scanned files, use CloudSearch for query processing, and use Elastic Beanstalk to host the website across multiple availability zones.
-D. Use a single-AZ RDS MySQL instance lo store the search index 33d the JPEG images use an EC2 instance to serve the website and translate user queries into SQL.
-E. Use a CloudFront download distribution to serve the JPEGs to the end users and Install the current commercial search product, along with a Java Container Tor the website on EC2 instances and use Route53 with DNS round-robin.
+
+A. Use S3 with reduced redundancy lo store and serve the scanned files, install the commercial search application on EC2
+Instances and configure with auto- scaling and an Elastic Load Balancer.<br>
+B. Model the environment using CloudFormation use an EC2 instance running Apache webserver and an open source search
+application, stripe multiple standard EBS volumes together to store the JPEGs and search index.<br>
+C. Use S3 with standard redundancy to store and serve the scanned files, use CloudSearch for query processing, and use
+Elastic Beanstalk to host the website across multiple availability zones.<br>
+D. Use a single-AZ RDS MySQL instance lo store the search index 33d the JPEG images use an EC2 instance to serve the
+website and translate user queries into SQL.<br>
+E. Use a CloudFront download distribution to serve the JPEGs to the end users and Install the current commercial search
+product, along with a Java Container Tor the website on EC2 instances and use Route53 with DNS round-robin.<br>
 
 정답 : C
 
 ---
 Q27
-A company has a complex web application that leverages Amazon CloudFront for global scalability and performance. Over time, users report that the web application is slowing down.
-The company's operations team reports that the CloudFront cache hit ratio has been dropping steadily. The cache metrics report indicates that query strings on some URLs are inconsistently ordered and are specified sometimes in mixed-case letters and sometimes in lowercase letters.
+A company has a complex web application that leverages Amazon CloudFront for global scalability and performance. Over
+time, users report that the web application is slowing down.
+The company's operations team reports that the CloudFront cache hit ratio has been dropping steadily. The cache metrics
+report indicates that query strings on some URLs are inconsistently ordered and are specified sometimes in mixed-case
+letters and sometimes in lowercase letters.
 Which set of actions should the solutions architect take to increase the cache hit ratio as quickly possible?
-A. Deploy a Lambda@Edge function to sort parameters by name and force them to be lowercase. Select the CloudFront viewer request trigger to invoke the function.
-B. Update the CloudFront distribution to disable caching based on query string parameters.
-C. Deploy a reverse proxy after the load balancer to post process the emitted URLs in the application to force the URL strings to be lowercase.
-D. Update the CloudFront distribution to specify case-insensitive query string processing.
+
+A. Deploy a Lambda@Edge function to sort parameters by name and force them to be lowercase. Select the CloudFront viewer
+request trigger to invoke the function.<br>
+B. Update the CloudFront distribution to disable caching based on query string parameters.<br>
+C. Deploy a reverse proxy after the load balancer to post process the emitted URLs in the application to force the URL
+strings to be lowercase.<br>
+D. Update the CloudFront distribution to specify case-insensitive query string processing.<br>
 
 ---
 Q28
-You are looking to migrate your Development (Dev) and Test environments to AWS. You have decided to use separate AWS accounts to host each environment.
-You plan to link each accounts bill to a Master AWS account using Consolidated Billing. To make sure you keep within budget you would like to implement a way for administrators in the Master account to have access to stop, delete and/or terminate resources in both the Dev and Test accounts.
+You are looking to migrate your Development (Dev) and Test environments to AWS. You have decided to use separate AWS
+accounts to host each environment.
+You plan to link each accounts bill to a Master AWS account using Consolidated Billing. To make sure you keep within
+budget you would like to implement a way for administrators in the Master account to have access to stop, delete and/or
+terminate resources in both the Dev and Test accounts.
 Identify which option will allow you to achieve this goal.
-A. Create IAM users in the Master account with full Admin permissions. Create cross-account roles in the Dev and Test accounts that grant the Master account access to the resources in the account by inheriting permissions from the Master account.
-B. Create IAM users and a cross-account role in the Master account that grants full Admin permissions to the Dev and Test accounts.
-C. Create IAM users in the Master account. Create cross-account roles in the Dev and Test accounts that have full Admin permissions and grant the Master account access.
-D. Link the accounts using Consolidated Billing. This will give IAM users in the Master account access to resources in the Dev and Test accounts
+
+A. Create IAM users in the Master account with full Admin permissions. Create cross-account roles in the Dev and Test
+accounts that grant the Master account access to the resources in the account by inheriting permissions from the Master
+account.<br>
+B. Create IAM users and a cross-account role in the Master account that grants full Admin permissions to the Dev and
+Test accounts.<br>
+C. Create IAM users in the Master account. Create cross-account roles in the Dev and Test accounts that have full Admin
+permissions and grant the Master account access.<br>
+D. Link the accounts using Consolidated Billing. This will give IAM users in the Master account access to resources in
+the Dev and Test accounts<br>
 
 정답 : C
 
 ---
 Q29
-You're running an application on-premises due to its dependency on non-x86 hardware and want to use AWS for data backup. Your backup application is only able to write to POSIX-compatible block-based storage. You have 140TB of data and would like to mount it as a single folder on your file server. Users must be able to access portions of this data while the backups are taking place.
+You're running an application on-premises due to its dependency on non-x86 hardware and want to use AWS for data backup.
+Your backup application is only able to write to POSIX-compatible block-based storage. You have 140TB of data and would
+like to mount it as a single folder on your file server. Users must be able to access portions of this data while the
+backups are taking place.
 What backup solution would be most appropriate for this use case?
-A. Use Storage Gateway and configure it to use Gateway Cached volumes.
-B. Configure your backup software to use S3 as the target for your data backups.
-C. Configure your backup software to use Glacier as the target for your data backups.
-D. Use Storage Gateway and configure it to use Gateway Stored volumes.
+
+A. Use Storage Gateway and configure it to use Gateway Cached volumes.<br>
+B. Configure your backup software to use S3 as the target for your data backups.<br>
+C. Configure your backup software to use Glacier as the target for your data backups.<br>
+D. Use Storage Gateway and configure it to use Gateway Stored volumes.<br>
 
 정답 : D
 
 ---
 Q30
-To serve Web traffic for a popular product your chief financial officer and IT director have purchased 10 m1.large heavy utilization Reserved Instances (RIs), evenly spread across two availability zones; Route 53 is used to deliver the traffic to an Elastic Load Balancer (ELB). After several months, the product grows even more popular and you need additional capacity. As a result, your company purchases two C3.2xlarge medium utilization Ris. You register the two c3.2xlarge instances with your ELB and quickly find that the m1.large instances are at 100% of capacity and the c3.2xlarge instances have significant capacity that's unused.
+To serve Web traffic for a popular product your chief financial officer and IT director have purchased 10 m1.large heavy
+utilization Reserved Instances (RIs), evenly spread across two availability zones; Route 53 is used to deliver the
+traffic to an Elastic Load Balancer (ELB). After several months, the product grows even more popular and you need
+additional capacity. As a result, your company purchases two C3.2xlarge medium utilization Ris. You register the two
+c3.2xlarge instances with your ELB and quickly find that the m1.large instances are at 100% of capacity and the
+c3.2xlarge instances have significant capacity that's unused.
 Which option is the most cost effective and uses EC2 capacity most effectively?
-A. Configure Autoscaling group and Launch Configuration with ELB to add up to 10 more on-demand m1.large instances when triggered by Cloudwatch. Shut off c3.2xlarge instances.
-B. Configure ELB with two c3.2xlarge instances and use on-demand Autoscaling group for up to two additional c3.2xlarge instances. Shut off m1.large instances.
-C. Route traffic to EC2 m1.large and c3.2xlarge instances directly using Route 53 latency based routing and health checks. Shut off ELB.
-D. Use a separate ELB for each instance type and distribute load to ELBs with Route 53 weighted round robin.
+
+A. Configure Autoscaling group and Launch Configuration with ELB to add up to 10 more on-demand m1.large instances when
+triggered by Cloudwatch. Shut off c3.2xlarge instances.<br>
+B. Configure ELB with two c3.2xlarge instances and use on-demand Autoscaling group for up to two additional c3.2xlarge
+instances. Shut off m1.large instances.<br>
+C. Route traffic to EC2 m1.large and c3.2xlarge instances directly using Route 53 latency based routing and health
+checks. Shut off ELB.<br>
+D. Use a separate ELB for each instance type and distribute load to ELBs with Route 53 weighted round robin.<br>
 
 정답 : D
 
 ---
 Q31
-You have deployed a web application targeting a global audience across multiple AWS Regions under the domain name.example.com. You decide to use
-Route53 Latency-Based Routing to serve web requests to users from the region closest to the user. To provide business continuity in the event of server downtime you configure weighted record sets associated with two web servers in separate Availability Zones per region. Dunning a DR test you notice that when you disable all web servers in one of the regions Route53 does not automatically direct all users to the other region.
+You have deployed a web application targeting a global audience across multiple AWS Regions under the domain
+name.example.com. You decide to use
+Route53 Latency-Based Routing to serve web requests to users from the region closest to the user. To provide business
+continuity in the event of server downtime you configure weighted record sets associated with two web servers in
+separate Availability Zones per region. Dunning a DR test you notice that when you disable all web servers in one of the
+regions Route53 does not automatically direct all users to the other region.
 What could be happening? (Choose two.)
-A. Latency resource record sets cannot be used in combination with weighted resource record sets.
-B. You did not setup an HTTP health check to one or more of the weighted resource record sets associated with me disabled web servers.
-C. The value of the weight associated with the latency alias resource record set in the region with the disabled servers is higher than the weight for the other region.
-D. One of the two working web servers in the other region did not pass its HTTP health check.
-E. You did not set "Evaluate Target Health" to "Yes" on the latency alias resource record set associated with example com in the region where you disabled the servers.
+
+A. Latency resource record sets cannot be used in combination with weighted resource record sets.<br>
+B. You did not setup an HTTP health check to one or more of the weighted resource record sets associated with me
+disabled web servers.<br>
+C. The value of the weight associated with the latency alias resource record set in the region with the disabled servers
+is higher than the weight for the other region.<br>
+D. One of the two working web servers in the other region did not pass its HTTP health check.<br>
+E. You did not set "Evaluate Target Health" to "Yes" on the latency alias resource record set associated with example
+com in the region where you disabled the servers.<br>
+
+정답 : B, E
+
+---
+Q32
+Your startup wants to implement an order fulfillment process for selling a personalized gadget that needs an average of
+3-4 days to produce with some orders taking up to 6 months you expect 10 orders per day on your first day. 1000 orders
+per day after 6 months and 10,000 orders after 12 months.
+Orders coming in are checked for consistency men dispatched to your manufacturing plant for production quality control
+packaging shipment and payment processing If the product does not meet the quality standards at any stage of the process
+employees may force the process to repeat a step Customers are notified via email about order status and any critical
+issues with their orders such as payment failure.
+Your base architecture includes AWS Elastic Beanstalk for your website with an RDS MySQL instance for customer data and
+orders.
+How can you implement the order fulfillment process while making sure that the emails are delivered reliably?
+
+A. Add a business process management application to your Elastic Beanstalk app servers and re-use the ROS database for
+tracking order status use one of the Elastic Beanstalk instances to send emails to customers.<br>
+B. Use SWF with an Auto Scaling group of activity workers and a decider instance in another Auto Scaling group with
+min/max=1 Use the decider instance to send emails to customers.<br>
+C. Use SWF with an Auto Scaling group of activity workers and a decider instance in another Auto Scaling group with
+min/max=1 use SES to send emails to customers.<br>
+D. Use an SQS queue to manage all process tasks Use an Auto Scaling group of EC2 Instances that poll the tasks and
+execute them. Use SES to send emails to customers.<br>
+
+정답 : C
+
+AWS의 Simple Workflow Service (SWF)는 개발자들이 분산된 애플리케이션, 프로세스, 또는 워크플로우를 쉽게 구축하고 실행할 수 있게 해주는 서비스입니다. SWF의 주요 역할과 기능은 다음과
+같습니다:
+
+워크플로우 관리: SWF는 복잡한 워크플로우의 조정과 실행을 관리합니다. 예를 들어, 여러 단계의 작업 처리 순서를 정의하고, 각 단계가 성공적으로 완료되었는지 추적할 수 있습니다.
+
+태스크 분배: SWF는 다양한 태스크(작업)를 적절한 작업자(소프트웨어 프로그램 또는 프로세스)에게 할당합니다. 이는 워크플로우 내에서 특정 작업이 어느 시점에 실행되어야 하는지 결정하는 데 도움이 됩니다.
+
+상태 유지 및 조정: SWF는 워크플로우의 상태를 유지하며, 각 태스크의 진행 상황을 추적합니다. 이를 통해 어느 단계가 완료되었는지, 어떤 작업이 다음으로 수행되어야 하는지 파악할 수 있습니다.
+
+신뢰성과 일관성: SWF는 작업의 중복 실행을 방지하고, 워크플로우의 일관성을 유지하는 데 도움을 줍니다. 이는 오류가 발생했을 때 안정적인 복구 및 재실행을 가능하게 합니다.
+
+확장성: SWF는 확장성이 뛰어나며, 수많은 작업과 복잡한 워크플로우를 효율적으로 관리할 수 있습니다.
+
+통합 및 호환성: 다른 AWS 서비스와의 통합이 용이하여, 예를 들어 Amazon EC2, Amazon RDS, Amazon S3 등과 함께 사용할 수 있습니다.
+
+
+---
+Q33
+A read only news reporting site with a combined web and application tier and a database tier that receives large and
+unpredictable traffic demands must be able to respond to these traffic fluctuations automatically.
+What AWS services should be used meet these requirements?
+
+A. Stateless instances for the web and application tier synchronized using ElastiCache Memcached in an autoscaimg group
+monitored with CloudWatch and RDS with read replicas.<br>
+B. Stateful instances for the web and application tier in an autoscaling group monitored with CloudWatch and RDS with
+read replicas.<br>
+C. Stateful instances for the web and application tier in an autoscaling group monitored with CloudWatch and multi-AZ
+RDS.<br>
+D. Stateless instances for the web and application tier synchronized using ElastiCache Memcached in an autoscaling group
+monitored with CloudWatch and multi-AZ RDS.<br>
+
+정답 : A
+
+---
+Q34
+
+You are designing a photo-sharing mobile app. The application will store all pictures in a single Amazon S3 bucket.
+Users will upload pictures from their mobile device directly to Amazon S3 and will be able to view and download their
+own pictures directly from Amazon S3.
+You want to configure security to handle potentially millions of users in the most secure manner possible.
+What should your server-side application do when a new user registers on the photo-sharing mobile application?
+
+A. Create an IAM user. Update the bucket policy with appropriate permissions for the IAM user. Generate an access key
+and secret key for the IAM user, store them in the mobile app and use these credentials to access Amazon S3.<br>
+B. Create an IAM user. Assign appropriate permissions to the IAM user. Generate an access key and secret key for the IAM
+user, store them in the mobile app and use these credentials to access Amazon S3.<br>
+C. Create a set of long-term credentials using AWS Security Token Service with appropriate permissions. Store these
+credentials in the mobile app and use them to access Amazon S3.<br>
+D. Record the user's information in Amazon RDS and create a role in IAM with appropriate permissions. When the user uses
+their mobile app, create temporary credentials using the AWS Security Token Service "AssumeRole" function. Store these
+credentials in the mobile app's memory and use them to access Amazon S3. Generate new credentials the next time the user
+runs the mobile app.<br>
+E. Record the user's information in Amazon DynamoDB. When the user uses their mobile app, create temporary credentials
+using AWS Security Token Service with appropriate permissions. Store these credentials in the mobile app's memory and
+use them to access Amazon S3. Generate new credentials the next time the user runs the mobile app.<br>
+
+정답 : D
+
+1. 사용자 회원가입
+
+사용자가 회원가입을 하여 아이디와 패스워드를 디비에 저장합니다.
+
+2. 사용자 로그인
+
+사용자가 아이디와 패스워드로 로그인합니다.
+
+3. IAM 역할과 STS
+
+서버는 STS를 사용하여 해당 사용자에 대한 임시 접근 권한을 가진 IAM 역할을 "Assume"하도록 요청합니다.
+
+이 임시 자격 증명은 사용자가 자신의 S3 경로에만 접근할 수 있도록 제한된 권한을 가집니다.
+
+4. 클라이언트에 IAM 역할 전달
+
+서버는 생성된 임시 자격 증명을 클라이언트에 전달합니다. 클라이언트는 이 자격 증명을 사용하여 S3에 접근하여 사진을 업로드하거나 다운로드합니다.
+
+5. 자격 증명 만료 및 재요청:
+
+임시 자격 증명은 제한된 시간 동안만 유효합니다. 만료되면, 사용자는 다시 로그인하여 새로운 임시 자격 증명을 요청해야 합니다.
+
+---
+Q35
+You are tasked with moving a legacy application from a virtual machine running inside your datacenter to an Amazon VPC.
+Unfortunately, this app requires access to a number of on-premises services and no one who configured the app still
+works for your company. Even worse there's no documentation for it.
+What will allow the application running inside the VPC to reach back and access its internal dependencies without being
+reconfigured? (Choose three.)
+
+A. An AWS Direct Connect link between the VPC and the network housing the internal services.<br>
+B. An Internet Gateway to allow a VPN connection.<br>
+C. An Elastic IP address on the VPC instance<br>
+D. An IP address space that does not conflict with the one on-premises<br>
+E. Entries in Amazon Route 53 that allow the Instance to resolve its dependencies' IP addresses<br>
+F. A VM Import of the current virtual machine<br>
+
+---
+Q36
+You have a periodic image analysis application that gets some files in input, analyzes them and tor each file writes
+some data in output to a ten file the number of files in input per day is high and concentrated in a few hours of the
+day.
+Currently you have a server on EC2 with a large EBS volume that hosts the input data and the results. It takes almost 20
+hours per day to complete the process.
+What services could be used to reduce the elaboration time and improve the availability of the solution?
+
+A. S3 to store I/O files. SQS to distribute elaboration commands to a group of hosts working in parallel. Auto scaling
+to dynamically size the group of hosts depending on the length of the SQS queue <br>
+B. EBS with Provisioned IOPS (PIOPS) to store I/O files. SNS to distribute elaboration commands to a group of hosts
+working in parallel Auto Scaling to dynamically size the group of hosts depending on the number of SNS
+notifications <br>
+C. S3 to store I/O files, SNS to distribute evaporation commands to a group of hosts working in parallel. Auto scaling
+to dynamically size the group of hosts depending on the number of SNS notifications <br>
+D. EBS with Provisioned IOPS (PIOPS) to store I/O files SQS to distribute elaboration commands to a group of hosts
+working in parallel Auto Scaling to dynamically size the group ot hosts depending on the length of the SQS queue. <br>
+
+정답 : A
+
+D로 고민했지만 EBS는 병렬처리에서 공유가안된다. 또한 비용 효울적이다.
+
+---
+Q37
+You have been asked to design the storage layer for an application. The application requires disk performance of at
+least 100,000 IOPS. In addition, the storage layer must be able to survive the loss of an individual disk, EC2 instance,
+or Availability Zone without any data loss. The volume you provide must have a capacity of at least 3 TB.
+Which of the following designs will meet these objectives?
+
+A. Instantiate a c3.8xlarge instance in us-east-1. Provision 4x1TB EBS volumes, attach them to the instance, and
+configure them as a single RAID 5 volume. Ensure that EBS snapshots are performed every 15 minutes.<br>
+B. Instantiate a c3.8xlarge instance in us-east-1. Provision 3xlTB EBS volumes, attach them to the Instance, and
+configure them as a single RAID 0 volume. Ensure that EBS snapshots are performed every 15 minutes.<br>
+C. Instantiate an i2.8xlarge instance in us-east-1a. Create a RAID 0 volume using the four 800GB SSD ephemeral disks
+provided with the instance. Provision 3x1TB EBS volumes, attach them to the instance, and configure them as a second
+RAID 0 volume. Configure synchronous, block-level replication from the ephemeral-backed volume to the EBS-backed
+volume.<br>
+D. Instantiate a c3.8xlarge instance in us-east-1. Provision an AWS Storage Gateway and configure it for 3 TB of storage
+and 100,000 IOPS. Attach the volume to the instance.<br>
+E. Instantiate an i2.8xlarge instance in us-east-1a. Create a RAID 0 volume using the four 800GB SSD ephemeral disks
+provided with the instance. Configure synchronous, block-level replication to an identically configured instance in
+us-east-1b.<br>
+
+정답 : E
+
+E : 가용영역 2개 + 동기식 복제로 안전하게 보호, RAID0으로 IOPS 충족
+
+---
+Q38
+
+You are the new IT architect in a company that operates a mobile sleep tracking application.
+When activated at night, the mobile app is sending collected data points of 1 kilobyte every 5 minutes to your backend.
+The backend takes care of authenticating the user and writing the data points into an Amazon DynamoDB table.
+Every morning, you scan the table to extract and aggregate last night's data on a per user basis, and store the results
+in Amazon S3. Users are notified via
+Amazon SNS mobile push notifications that new data is available, which is parsed and visualized by the mobile app.
+Currently you have around 100k users who are mostly based out of North America.
+You have been tasked to optimize the architecture of the backend system to lower cost.
+What would you recommend? (Choose two.)
+
+A. Have the mobile app access Amazon DynamoDB directly Instead of JSON files stored on Amazon S3.<br>
+B. Write data directly into an Amazon Redshift cluster replacing both Amazon DynamoDB and Amazon S3.<br>
+C. Introduce an Amazon SQS queue to buffer writes to the Amazon DynamoDB table and reduce provisioned write
+throughput.<br>
+D. Introduce Amazon Elasticache to cache reads from the Amazon DynamoDB table and reduce provisioned read
+throughput.<br>
+E. Create a new Amazon DynamoDB table each day and drop the one for the previous day after its data is on Amazon S3.<br>
+
+정답 : C, E
+
+---
+Q39
+
+A large real-estate brokerage is exploring the option of adding a cost-effective location based alert to their existing
+mobile application. The application backend infrastructure currently runs on AWS. Users who opt in to this service will
+receive alerts on their mobile device regarding real-estate otters in proximity to their location. For the alerts to be
+relevant delivery time needs to be in the low minute count the existing mobile app has 5 million users across the US.
+Which one of the following architectural suggestions would you make to the customer?
+
+A. The mobile application will submit its location to a web service endpoint utilizing Elastic Load Balancing and EC2
+instances; DynamoDB will be used to store and retrieve relevant offers EC2 instances will communicate with mobile
+earners/device providers to push alerts back to mobile application.<br>
+B. Use AWS DirectConnect or VPN to establish connectivity with mobile carriers EC2 instances will receive the mobile
+applications location through carrier connection: RDS will be used to store and relevant offers. EC2 instances will
+communicate with mobile carriers to push alerts back to the mobile application.<br>
+C. The mobile application will send device location using SQS. EC2 instances will retrieve the relevant others from
+DynamoDB. AWS Mobile Push will be used to send offers to the mobile application.<br>
+D. The mobile application will send device location using AWS Mobile Push EC2 instances will retrieve the relevant
+offers from DynamoDB. EC2 instances will communicate with mobile carriers/device providers to push alerts back to the
+mobile application.<br>
+
+정답 : C
+
+---
+Q40
+You currently operate a web application. In the AWS US-East region. The application runs on an auto-scaled layer of EC2
+instances and an RDS Multi-AZ database. Your IT security compliance officer has tasked you to develop a reliable and
+durable logging solution to track changes made to your EC2.IAM And RDS resources. The solution must ensure the integrity
+and confidentiality of your log data.
+Which of these solutions would you recommend?
+
+A. Create a new CloudTrail trail with one new S3 bucket to store the logs and with the global services option selected.
+Use IAM roles S3 bucket policies and Multi Factor Authentication (MFA) Delete on the S3 bucket that stores your
+logs.<br>
+B. Create a new CloudTrail with one new S3 bucket to store the logs Configure SNS to send log file delivery
+notifications to your management system. Use IAM roles and S3 bucket policies on the S3 bucket mat stores your logs.<br>
+C. Create a new CloudTrail trail with an existing S3 bucket to store the logs and with the global services option
+selected. Use S3 ACLs and Multi Factor Authentication (MFA). Delete on the S3 bucket that stores your logs.<br>
+D. Create three new CloudTrail trails with three new S3 buckets to store the logs one for the AWS Management console,
+one for AWS SDKs and one for command line tools. Use IAM roles and S3 bucket policies on the S3 buckets that store your
+logs.<br>
+
+정답 : A
 
