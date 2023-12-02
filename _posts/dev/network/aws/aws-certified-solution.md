@@ -827,4 +827,168 @@ one for AWS SDKs and one for command line tools. Use IAM roles and S3 bucket pol
 logs.<br>
 
 정답 : A
+global service로 모든 리소스에 대한 기록을 남기고, s3에 대한 제한은 버킷정책으로 컨트롤한다.
 
+---
+Q41
+Your department creates regular analytics reports from your company's log files All log data is collected in Amazon S3
+and processed by daily Amazon Elastic
+MapReduce (EMR) jobs that generate daily PDF reports and aggregated tables in CSV format for an Amazon Redshift data
+warehouse.
+Your CFO requests that you optimize the cost structure for this system.
+Which of the following alternatives will lower costs without compromising average performance of the system or data
+integrity for the raw data?
+
+A. Use reduced redundancy storage (RRS) for all data In S3. Use a combination of Spot Instances and Reserved Instances
+for Amazon EMR jobs. Use Reserved Instances for Amazon Redshift.<br>
+B. Use reduced redundancy storage (RRS) for PDF and .csv data in S3. Add Spot Instances to EMR jobs. Use Spot Instances
+for Amazon Redshift.<br>
+C. Use reduced redundancy storage (RRS) for PDF and .csv data In Amazon S3. Add Spot Instances to Amazon EMR jobs. Use
+Reserved Instances for Amazon Redshift.<br>
+D. Use reduced redundancy storage (RRS) for all data in Amazon S3. Add Spot Instances to Amazon EMR jobs. Use Reserved
+Instances for Amazon Redshift.<br>
+
+EMR은 하둡과 같은 데이터 처리 및 분석 플랫폼입니다.
+
+정답 : C
+
+---
+Q42
+You require the ability to analyze a large amount of data, which is stored on Amazon S3 using Amazon Elastic Map Reduce.
+You are using the cc2 8xlarge instance type, whose CPUs are mostly idle during processing. Which of the below would be
+the most cost efficient way to reduce the runtime of the job?
+
+A. Create more, smaller flies on Amazon S3.<br>
+B. Add additional cc2 8xlarge instances by introducing a task group.<br>
+C. Use smaller instances that have higher aggregate I/O performance.<br>
+D. Create fewer, larger files on Amazon S3.<br>
+
+정답 : C
+
+이 문제는 Amazon S3에 저장된 대량의 데이터를 Amazon Elastic MapReduce (EMR)를 사용하여 분석하는 상황에서, 작업 실행 시간을 줄이는 가장 비용 효율적인 방법을 찾는 것입니다. 여기서
+언급된 cc2.8xlarge 인스턴스는 EMR 클러스터에서 사용되는 EC2 인스턴스 타입입니다. EMR 작업은 EC2 인스턴스를 사용하여 데이터를 처리하므로, 인스턴스 타입과 성능이 중요합니다.
+
+---
+Q43
+An AWS customer is deploying an application mat is composed of an AutoScaling group of EC2 Instances.
+The customers security policy requires that every outbound connection from these instances to any other service within
+the customers Virtual Private Cloud must be authenticated using a unique x 509 certificate that contains the specific
+instance-id.
+In addition, an x 509 certificates must Designed by the customer's Key management service in order to be trusted for
+authentication.
+Which of the following configurations will support these requirements?
+A. Configure an IAM Role that grants access to an Amazon S3 object containing a signed certificate and configure the
+Auto Scaling group to launch instances with this role. Have the instances bootstrap get the certificate from Amazon S3
+upon first boot.
+B. Embed a certificate into the Amazon Machine Image that is used by the Auto Scaling group. Have the launched instances
+generate a certificate signature request with the instance's assigned instance-id to the key management service for
+signature.
+C. Configure the Auto Scaling group to send an SNS notification of the launch of a new instance to the trusted key
+management service. Have the Key management service generate a signed certificate and send it directly to the newly
+launched instance.
+D. Configure the launched instances to generate a new certificate upon first boot. Have the Key management service poll
+the Auto Scaling group for associated instances and send new instances a certificate signature (hat contains the
+specific instance-id.
+
+---
+Q44
+Your company runs a customer facing event registration site This site is built with a 3-tier architecture with web and
+application tier servers and a MySQL database The application requires 6 web tier servers and 6 application tier servers
+for normal operation, but can run on a minimum of 65% server capacity and a single MySQL database.
+When deploying this application in a region with three availability zones (AZs) which architecture provides high
+availability?
+
+A. A web tier deployed across 2 AZs with 3 EC2 (Elastic Compute Cloud) instances in each AZ inside an Auto Scaling Group
+behind an ELB (elastic load balancer), and an application tier deployed across 2 AZs with 3 EC2 instances in each AZ
+inside an Auto Scaling Group behind an ELB and one RDS (Relational Database Service) instance deployed with read
+replicas in the other AZ.<br>
+B. A web tier deployed across 3 AZs with 2 EC2 (Elastic Compute Cloud) instances in each AZ inside an Auto Scaling Group
+behind an ELB (elastic load balancer) and an application tier deployed across 3 AZs with 2 EC2 instances in each AZ
+inside an Auto Scaling Group behind an ELB and one RDS (Relational Database Service) Instance deployed with read
+replicas in the two other AZs.<br>
+C. A web tier deployed across 2 AZs with 3 EC2 (Elastic Compute Cloud) instances in each AZ inside an Auto Scaling Group
+behind an ELB (elastic load balancer) and an application tier deployed across 2 AZs with 3 EC2 instances m each AZ
+inside an Auto Scaling Group behind an ELS and a Multi-AZ RDS (Relational Database Service) deployment.<br>
+D. A web tier deployed across 3 AZs with 2 EC2 (Elastic Compute Cloud) instances in each AZ Inside an Auto Scaling Group
+behind an ELB (elastic load balancer). And an application tier deployed across 3 AZs with 2 EC2 instances in each AZ
+inside an Auto Scaling Group behind an ELB and a Multi-AZ RDS (Relational Database services) deployment.<br>
+
+마스터 슬레이브는 마스터가 다운됐을때 수동으로는 승격시킬 수 있지만 자동으로 페일오버되지않습니다.
+
+2개의 AZ에 인스턴스를 3개씩 배포하는것보다 3개의 AZ에 인스턴스를 2개씩 배포하는게 더 고가용성에 좋습니다.
+
+정닺 : D
+
+---
+Q45
+Your customer wishes to deploy an enterprise application to AWS, which will consist of several web servers, several
+application servers and a small (50GB) Oracle database. Information is stored, both in the database and the file systems of the various servers. 
+The backup system must support database recovery whole server and whole disk restores, and individual file restores with a recovery time of no more than two hours. 
+They have chosen to use RDS Oracle as the database.
+Which backup architecture will meet these requirements?
+
+A. Backup RDS using automated daily DB backups. Backup the EC2 instances using AMIs and supplement with file-level
+backup to S3 using traditional enterprise backup software to provide file level restore.<br>
+B. Backup RDS using a Multi-AZ Deployment. Backup the EC2 instances using Amis, and supplement by copying file system
+data to S3 to provide file level restore.<br>
+C. Backup RDS using automated daily DB backups. Backup the EC2 instances using EBS snapshots and supplement with
+file-level backups to Amazon Glacier using traditional enterprise backup software to provide file level restore.<br>
+D. Backup RDS database to S3 using Oracle RMAN. Backup the EC2 instances using Amis, and supplement with EBS snapshots
+for individual volume restore.<br>
+
+B. multi az는 고가용성을 위한것으로 백업과 다르다.
+
+---
+Q46
+Your company has HQ in Tokyo and branch offices all over the world and is using a logistics software with a multi-regional deployment on AWS in Japan, Europe and USA. The logistic software has a 3-tier architecture and currently uses MySQL 5.6 for data persistence. Each region has deployed its own database.
+In the HQ region you run an hourly batch process reading data from every region to compute cross-regional reports that are sent by email to all offices this batch process must be completed as fast as possible to quickly optimize logistics.
+How do you build the database architecture in order to meet the requirements?
+
+A. For each regional deployment, use RDS MySQL with a master in the region and a read replica in the HQ region
+B. For each regional deployment, use MySQL on EC2 with a master in the region and send hourly EBS snapshots to the HQ region
+C. For each regional deployment, use RDS MySQL with a master in the region and send hourly RDS snapshots to the HQ region
+D. For each regional deployment, use MySQL on EC2 with a master in the region and use S3 to copy data files hourly to the HQ region
+E. Use Direct Connect to connect all regional MySQL deployments to the HQ region and reduce network latency for the batch process
+
+정답 : A
+
+---
+Q47
+A web design company currently runs several FTP servers that their 250 customers use to upload and download large graphic files They wish to move this system to AWS to make it more scalable, but they wish to maintain customer privacy and Keep costs to a minimum.
+What AWS architecture would you recommend?
+
+A. ASK their customers to use an S3 client instead of an FTP client. Create a single S3 bucket Create an IAM user for each customer Put the IAM Users in a Group that has an IAM policy that permits access to sub-directories within the bucket via use of the 'username' Policy variable.<br>
+B. Create a single S3 bucket with Reduced Redundancy Storage turned on and ask their customers to use an S3 client instead of an FTP client Create a bucket for each customer with a Bucket Policy that permits access only to that one customer.<br>
+C. Create an auto-scaling group of FTP servers with a scaling policy to automatically scale-in when minimum network traffic on the auto-scaling group is below a given threshold. Load a central list of ftp users from S3 as part of the user Data startup script on each Instance.<br>
+D. Create a single S3 bucket with Requester Pays turned on and ask their customers to use an S3 client instead of an FTP client Create a bucket tor each customer with a Bucket Policy that permits access only to that one customer.<br>
+
+정답 : A
+
+---
+Q48
+You would like to create a mirror image of your production environment in another region for disaster recovery purposes.
+Which of the following AWS resources do not need to be recreated in the second region? (Choose two.)
+
+A. Route 53 Record Sets <br>
+B. IAM Roles <br>
+C. Elastic IP Addresses (EIP) <br>
+D. EC2 Key Pairs <br>
+E. Launch configurations <br>
+F. Security Groups <br>
+
+정답 : A, B
+
+---
+Q49
+Your company currently has a 2-tier web application running in an on-premises data center. You have experienced several infrastructure failures in the past two months resulting in significant financial losses. Your CIO is strongly agreeing to move the application to AWS. While working on achieving buy-in from the other company executives, he asks you to develop a disaster recovery plan to help improve Business continuity in the short term. He specifies a target Recovery Time
+Objective (RTO) of 4 hours and a Recovery Point Objective (RPO) of 1 hour or less. He also asks you to implement the solution within 2 weeks.
+Your database is 200GB in size and you have a 20Mbps Internet connection. How would you do this while minimizing costs?
+
+A. Create an EBS backed private AMI which includes a fresh install of your application. Develop a CloudFormation template which includes your AMI and the required EC2, AutoScaling, and ELB resources to support deploying the application across Multiple- Availability-Zones. Asynchronously replicate transactions from your on-premises database to a database instance in AWS across a secure VPN connection.<br>
+B. Deploy your application on EC2 instances within an Auto Scaling group across multiple availability zones. Asynchronously replicate transactions from your on- premises database to a database instance in AWS across a secure VPN connection.<br>
+C. Create an EBS backed private AMI which includes a fresh install of your application. Setup a script in your data center to backup the local database every 1 hour and to encrypt and copy the resulting file to an S3 bucket using multi-part upload.<br>
+D. Install your application on a compute-optimized EC2 instance capable of supporting the application's average load. Synchronously replicate transactions from your on-premises database to a database instance in AWS across a secure Direct Connect connection.<br>
+
+정답 : A
+
+AWS Database Migration Service (DMS)를 통해서 비동기 마이그레이션이 가능하다.
