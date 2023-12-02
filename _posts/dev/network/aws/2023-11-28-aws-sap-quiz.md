@@ -8,6 +8,10 @@ categories:
 comments: true
 ---
 
+
+그냥 문제만 풀기에 심심해서 기록으로 남겨봅니다 🤜
+
+---
 Q1
 Your company policies require encryption of sensitive data at rest. You are considering the possible options for
 protecting data while storing it at rest on an EBS data volume, attached to an EC2 instance.
@@ -1298,3 +1302,51 @@ A. AWS RDS<br>
 B. AWS ELB<br>
 C. AWS Route53<br>
 D. AWS EMR<br>
+
+정답 : D
+
+기본 모니터링은 5분마다 모니터링 정보를 제공하고 디테일 모니터링은 1분마다 모니터링 정보를 제공하는데 EMR은 기본 모니터링만 제공한다.
+
+---
+Q65
+A customer has established an AWS Direct Connect connection to AWS. The link is up and routes are being advertised from the customer's end, however the customer is unable to connect from EC2 instances inside its VPC to servers residing in its datacenter.
+Which of the following options provide a viable solution to remedy this situation? (Choose two.)
+
+A. Add a route to the route table with an iPsec VPN connection as the target.<br>
+B. Enable route propagation to the virtual pinnate gateway (VGW).<br>
+C. Enable route propagation to the customer gateway (CGW).<br>
+D. Modify the route table of all Instances using the 'route' command.<br>
+E. Modify the Instances VPC subnet route table by adding a route back to the customer's on-premises environment.<br>
+
+---
+Q66
+You are running a news website in the eu-west-1 region that updates every 15 minutes. The website has a world-wide audience. It uses an Auto Scaling group behind an Elastic Load Balancer and an Amazon RDS database. Static content resides on Amazon S3, and is distributed through Amazon CloudFront. Your Auto
+Scaling group is set to trigger a scale up event at 60% CPU utilization. You use an Amazon RDS extra large DB instance with 10.000 Provisioned IOPS, its CPU utilization is around 80%, while freeable memory is in the 2 GB range.
+Web analytics reports show that the average load time of your web pages is around 1.5 to 2 seconds, but your SEO consultant wants to bring down the average load time to under 0.5 seconds.
+How would you improve page load times for your users? (Choose three.)
+
+A. Lower the scale up trigger of your Auto Scaling group to 30% so it scales more aggressively.<br>
+B. Add an Amazon ElastiCache caching layer to your application for storing sessions and frequent DB queries<br>
+C. Configure Amazon CloudFront dynamic content support to enable caching of re-usable content from your site<br>
+D. Switch the Amazon RDS database to the high memory extra large Instance type<br>
+E. Set up a second installation in another region, and use the Amazon Route 53 latency-based routing feature to select the right region.<br>
+
+정답 : B, C, E 
+
+---
+Q67
+A corporate web application is deployed within an Amazon Virtual Private Cloud (VPC) and is connected to the corporate data center via an IPSec VPN. The application must authenticate against the on-premises LDAP server. After authentication, each logged-in user can only access an Amazon Simple Storage Space
+(S3) keyspace specific to that user.
+Which two approaches can satisfy these objectives? (Choose two.)
+
+A. Develop an identity broker that authenticates against IAM security Token service to assume a IAM role in order to get temporary AWS security credentials The application calls the identity broker to get AWS temporary security credentials with access to the appropriate S3 bucket.<br>
+B. The application authenticates against LDAP and retrieves the name of an IAM role associated with the user. The application then calls the IAM Security Token Service to assume that IAM role. The application can use the temporary credentials to access the appropriate S3 bucket.<br>
+C. Develop an identity broker that authenticates against LDAP and then calls IAM Security Token Service to get IAM federated user credentials. The application calls the identity broker to get IAM federated user credentials with access to the appropriate S3 bucket.<br>
+D. The application authenticates against LDAP the application then calls the AWS identity and Access Management (IAM) Security service to log in to IAM using the LDAP credentials the application can use the IAM temporary credentials to access the appropriate S3 bucket.<br>
+E. The application authenticates against IAM Security Token Service using the LDAP credentials the application uses those temporary AWS security credentials to access the appropriate S3 bucket.<br>
+
+정답 : B, C
+항상 말이 조금 어려운데 B는 애플리케이션에서 직접 LDAP로그인 -> 로그인정보 기반으로 적절한 IAM 찾음 -> 역할 수임
+C는 브로커라는 분리된 서버가 B의 과정을 도와준다.
+결국 B와 C가 거의 같은 옵션이다.
+
