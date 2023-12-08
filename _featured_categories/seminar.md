@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: experience
+title: seminar
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: experience
+slug: seminar
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  회고 글을 공유합니다. 
+  세미나에 대한 내용을 공유합니다. 
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true

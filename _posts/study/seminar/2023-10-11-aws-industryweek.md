@@ -3,7 +3,8 @@ layout: post
 title:  "[2023] AWS Industry Week 회고"
 date:   2023-10-11 08:46:00 +0900
 categories: 
-  - review
+  - experience
+  - seminar
 description: >
   'AWS Industry Week Conference 에 대한 회고 글입니다.'
 ---
@@ -14,11 +15,12 @@ description: >
 
 회사에서 종종 AWS 관련 컨퍼런스의 소식을 받아 볼 수 있는데요. 아래의 스레드를 보자마자 사전등록을 했습니다.
 
-![그림1](/assets/img/review/20231011/img_2.png)
+![그림1](/assets/img/study/seminar/aws-20231011/img_2.png)
 
 <br/>
 몇번의 클릭이면 신청을 완료할 수 있었고, 덕분에 AWS Summit Seoul에 이어서 두번째 컨퍼런스에 참석할 수 있었습니다. (항상 좋은 정보 감사드립니다🙇)
-![그림1](/assets/img/review/20231011/img_20.png)
+
+![그림1](/assets/img/study/seminar/aws-20231011/img_20.png)
 
 <br/>
 저번에 AWS Summit 을 방문했을때는 그랜드 볼룸이 어디인지 몰라서 무척 해멨었는데, 나름 이제 노하우가 생겨서 해매지않고 도착할 수 있었습니다.
@@ -30,10 +32,10 @@ description: >
 3. 코엑스에 들어와서 앞으로 쭉 직진하면 별마당 도서관이 나옵니다.
 4. 여기에서 에스컬레이터 타고 올라가면 코엑스가 보입니다.
 5. 코엑스에 들어간 뒤, 해당 층에서 오른쪽으로 쭉 돌면 나옵니다. 생각보다 코엑스에 들어와서도 꽤 걸어야합니다.
-   ![img.png](/assets/img/review/20231011/img_1.png)
+   ![img.png](/assets/img/study/seminar/aws-20231011/img_1.png)
 
 그랜드 볼룸에 다가가면 현장 스탭들이 사전 등록 여부를 판단합니다.
-![img.png](/assets/img/review/20231011/img_3.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_3.png)
 
 그러면 세션을 들을 수 있는 목걸이를 제공해주는데, 여기에 식사 쿠폰도 같이 들어있습니다.
 
@@ -45,7 +47,7 @@ E-commerce 백엔드 개발자로써 듣기에 적합한 세션들이 전부 리
 
 ## 리테일의 미래 - 산업을 주도하는 기술 트렌드 (레벨 100)
 
-![img.png](/assets/img/review/20231011/img.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img.png)
 
 첫번 째 세션은 너무나도 빠르게 바뀌어가는 현대사회에서 앞으로 리테일 산업에서 살아남기 위해서는 어떤 키워드들에 집중해야하는지 알 수 있었습니다.
 
@@ -54,29 +56,29 @@ ChatGPT 의 등장으로 개발자 모두가 앞으로 AI에 따라서 비지니
 아래 사진을 보면 AWS에서도 클라우드 서비스로 생성형 AI를 제공하는데, Amazon Bedrock이라는 서비스는 출시한지 2주밖에 안됐더라구요.
 
 openAI와 앞으로 치열한 경쟁이 이뤄지지않을까 싶네요.
-![img.png](/assets/img/review/20231011/img_4.png)  
+![img.png](/assets/img/study/seminar/aws-20231011/img_4.png)  
 <br/>
 이외에도 컴포저블 커머스를 설명해주셨는데, 이것은 이미 많은 백앤드 개발자들이 현업에서 느끼고 있는 키워드 같습니다. 대부분 MSA와 일맥상통하는 이야기로 느껴졌습니다.
-![img.png](/assets/img/review/20231011/img_5.png)  
+![img.png](/assets/img/study/seminar/aws-20231011/img_5.png)  
 <br/>
 
 아마존의 anywhere는 사용중인 앱을 나가지않고도 물건을 구매할수 있는 기술을 의미하는데 페리닷(?)이라는 게임에 이게 적용되었다고 하네요.
 또한 3d를 통해서 고객이 현실감있게 쇼핑을 할 수 있도록 도와주면서 몰입을 유도하는것을 몰입형 커머스라고하는데 앞으로 3d 기술이 우리 일상에 다가오는 날이 멀지 않았다고 합니다.
 
 AWS 자격증을 준비하면서 AWS의 다양한 서비스들을 공부하고있는데, 사진의 서비스들중에 잘 모르는 AWS appSync와 AWS Amplify가 존재했습니다.  
-![img.png](/assets/img/review/20231011/img_6.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_6.png)
 <br/>
 찾아보니깐 AppSync는 간단하게 GraphQL서버 기능을 제공하고, Amplify는 백앤드개발자가 프론트까지 빠르게 POC로 만들어볼수있는 기능을 제공하는것 같습니다.   
 
 앞으로 아래 키워드들은 관심을 가지고 지켜봐야할것 같습니다.
-![img.png](/assets/img/review/20231011/img_7.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_7.png)
 
 ## 점심시간
 
 첫 세션 종료와 함께 아침에 받았던 점심 쿠폰을 식사와 교환하게 되는데, 구성은 아래와 같이 샌드위치와 과일 그리고 쿠키고 이루어져있습니다.
 <br/>
 
-![img.png](/assets/img/review/20231011/img_8.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_8.png)
 
 AWS Summit 때도 느꼈지만 식사는 정말 잘 챙겨줍니다. 아주 맛있게 먹었어요. 🤤
 
@@ -93,15 +95,15 @@ AWS Summit 때도 느꼈지만 식사는 정말 잘 챙겨줍니다. 아주 맛�
 2. 목적별 데이터베이스
 
 API로 복잡하게 엮지말고 아래처럼 이벤트를 활용해서 블랙박스에게 요청을 보내는것이 의존성을 낮춘다고 설명합니다. 
-![img.png](/assets/img/review/20231011/img_9.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_9.png)
 
 또한 비동기식으로 만들면 single point of failure 가 없어지고 트랜잭션을 길게 안잡고 있어도되니깐 데이터베이스에 대한 부하가 적어진다고 설명합니다.
 
 이를 도와주는 AWS 서비스들은 아래처럼 존재합니다.
-![img.png](/assets/img/review/20231011/img_10.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_10.png)
 
 하지만 이렇게 만들어도 데이터베이스를 하나로 몰빵(?)하면 부하를 감당할 수 없습니다.
-![img.png](/assets/img/review/20231011/img_11.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_11.png)
 
 이에 따라서 목적에 맞게 각각의 디비를 분리하는게 중요하다고 합니다.
 
@@ -113,7 +115,7 @@ API로 복잡하게 엮지말고 아래처럼 이벤트를 활용해서 블랙�
 
 먼저 아래 사진과 같이, 기존 동기식으로 구현된 코드로 인해 데이터베이스의 트랜잭션이 길게 잡혀있었고 이는 곧바로 디비에 대한 부하로 이어졌다고 합니다.
 <br/>
-![img.png](/assets/img/review/20231011/img_12.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_12.png)
 
 이것을 비동기로 데이터베이스에 결과를 반영하도록 수정하면서 유저경험도 해결하고 디비에 대한 부하도 감소했다고 하는데요. 순서는 아래와 같습니다.
 1. 쿠폰 발급을 요청합니다.
@@ -122,14 +124,14 @@ API로 복잡하게 엮지말고 아래처럼 이벤트를 활용해서 블랙�
 4. 바로 응답을 프론트로 넘겨줌으로써 사용자 경험을 개선합니다.
 5. 비동기로 쿠폰 이벤트에 대한 처리를 데이터베이스에 기록합니다.
 <br/>
-![img.png](/assets/img/review/20231011/img_13.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_13.png)
 <br/>
 이 때, MQ Broker 를 사용한 이유를 설명해주셨는데, 먼저 MSK는 스케일을 줄였다가 늘리는게 어렵고 SQS는 write once read once에 대한 보장이 어렵다고합니다.
 
 이렇게 적절한 브로커를 찾는게 중요해보입니다.
 
 그 다음으로는 목적별 데이터베이스에 대한 이야기로 이어갔습니다. 사진처럼 각 도메인에 맞는 데이터베이스로 변경하면서 데이터베이스의 병목현상을 해결했다고 합니다.
-![img.png](/assets/img/review/20231011/img_14.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_14.png)
 
 ## 기술 부채가 뭐야? GS SHOP Builder들의 현대화를 위한 도전 (레벨 200)
 
@@ -138,24 +140,24 @@ API로 복잡하게 엮지말고 아래처럼 이벤트를 활용해서 블랙�
 strangler fig pattern 에 대해서 이야기하는데요. 이 때 조금 놀라웠던게 예전에 스프링 한국 사용자 모임 컨퍼런스에서 들었던 세션과 내용이 정확히 똑같았습니다.
 
 strangler fig 란 나무에 기생하면서 양분을 빨아먹다가, 기존의 나무를 제거하고 자기가 나무를 대체하는 존재가 된다고 하는데요. 아래와 같은 패턴으로 **점진적으로** 모놀로틱 서비스에서 마이크로 서비스로 전환한다고 합니다.
-![img.png](/assets/img/review/20231011/img_15.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_15.png)
 <br/>
 
 예시를 통해서 자세하게 들여다보면, 기존의 모놀로틱 시스템 이외에 새롭게 추가되는 신규 기능들은 일단 마이크로서비스로 전부 생성합니다.
 
 그리고 API Gateway(프록시)가 라우팅해줍니다.
 
-![img.png](/assets/img/review/20231011/img_16.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_16.png)
 <br/>
 그 이후에, 재고 시스템을 먼저 분리한다고 가정했는데요. 기존의 재고 시스템이 새로운 재고 마이크로서비스를 호출하고 새롭게 생긴 마이크로서비스는 자신의 DB에 데이터를 적재하고 기존의 레거시 DB에는 이벤트를 통해서 데이터 동기화를 해줍니다.
 
 이렇게 동기화함으로써 단일 데이터베이스를 조회하는 다른 서비스에서도 정합성 불일치 이슈가 발생하지 않습니다.
-![img.png](/assets/img/review/20231011/img_17.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_17.png)
 <br/>
 그렇게 데이터를 조금씩 이동하면서 점진적으로 재고에 대한 참조를 전부 끊어갑니다. 그리고 다른 팀들에게 마이크로서비스로 이루어진 재고 시스템을 참조하도록 가이드해야겠죠.
 
 최종적으로 아래와 같은 그림이 됩니다.
-![img.png](/assets/img/review/20231011/img_18.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_18.png)
 <br/>
 다음으로 GS SHOP의 실제 사례를 들어주셨는데, 초반에는 GS SHOP에 대한 자랑(?)을 하시다가 AWS 아키텍터분의 설명과 비슷한 내용을 발표해주셨어요. 
 
@@ -168,11 +170,11 @@ payment 도메인 개발자라면 아주 재미있게 들었을 것 같은데, �
 먼저 pg사를 이용하지않고 직접 페이를 구현했을 때, 아래 이점들이 존재한다고 합니다.
 
 깊게 생각안해봤는데 그래서 당근이나 컬리 등등이 직접 페이시스템을 도입하는것 같습니다.
-![img.png](/assets/img/review/20231011/img_21.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_21.png)
 <br/>
 
 흥미롭게 들은 부분은 RDS 소개였는데요. 블루그린배포의 플로우가 아래와 같다는점을 새롭게 배웠습니다.
-![img.png](/assets/img/review/20231011/img_22.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_22.png)
 <br/>
 
 먼저 그린을 생성하고, 데이터를 복제한뒤에 트래픽을 그린으로 옮기는데, 이 때 짧은 시간이지만 순단이 발생한다고 합니다.
@@ -188,7 +190,7 @@ payment 도메인 개발자라면 아주 재미있게 들었을 것 같은데, �
 먼저 SAGA 패턴을 사용했다고 알려주셨습니다. 이 부분은 제가 사용해본적이 없어서 조금 생소한데, 검색해보니깐 `SAGA에서는 롤백을 통한 트랜잭션 취소 대신, 특정 트랜잭션이 실패할 경우 '보상 로직'을 실행하여 이전에 성공한 트랜잭션의 효과를 취소하게 됩니다.` 라고 하네요.
 
 스프링 배치를 돌면서 이러한 작업을 수행한다고 합니다.
-![img.png](/assets/img/review/20231011/img_22.png)
+![img.png](/assets/img/study/seminar/aws-20231011/img_22.png)
 
 그리고 `데이터 메쉬`라는 키워드를 처음 들었는데 MSA 의 고도화라는 것을 배웠습니다.
 

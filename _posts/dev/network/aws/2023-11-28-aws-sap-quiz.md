@@ -1194,46 +1194,65 @@ D. Add an RDS MySQL read replica in each availability zone<br>
 
 정답 : A, D
 
-B -> RDS Mysql에서는 샤딩을 직접적으로 지원하지않는다. 
+B -> RDS Mysql에서는 샤딩을 직접적으로 지원하지않는다.
 
 C -> 인스턴스 크기를 증가하고 IOPS를 늘리는것은 읽기 경합보다는 주로 쓰기 성능 향상이다.
 
 ---
 Q57
-Company B is launching a new game app for mobile devices. Users will log into the game using their existing social media account to streamline data capture.
-Company B would like to directly save player data and scoring information from the mobile app to a DynamoDS table named Score Data When a user saves their game the progress data will be stored to the Game state S3 bucket.
+Company B is launching a new game app for mobile devices. Users will log into the game using their existing social media
+account to streamline data capture.
+Company B would like to directly save player data and scoring information from the mobile app to a DynamoDS table named
+Score Data When a user saves their game the progress data will be stored to the Game state S3 bucket.
 What is the best approach for storing data to DynamoDB and S3?
 
-A. Use an EC2 Instance that is launched with an EC2 role providing access to the Score Data DynamoDB table and the GameState S3 bucket that communicates with the mobile app via web services.<br>
-B. Use temporary security credentials that assume a role providing access to the Score Data DynamoDB table and the Game State S3 bucket using web identity federation.<br>
-C. Use Login with Amazon allowing users to sign in with an Amazon account providing the mobile app with access to the Score Data DynamoDB table and the Game State S3 bucket.<br>
-D. Use an IAM user with access credentials assigned a role providing access to the Score Data DynamoDB table and the Game State S3 bucket for distribution with the mobile app.<br>
+A. Use an EC2 Instance that is launched with an EC2 role providing access to the Score Data DynamoDB table and the
+GameState S3 bucket that communicates with the mobile app via web services.<br>
+B. Use temporary security credentials that assume a role providing access to the Score Data DynamoDB table and the Game
+State S3 bucket using web identity federation.<br>
+C. Use Login with Amazon allowing users to sign in with an Amazon account providing the mobile app with access to the
+Score Data DynamoDB table and the Game State S3 bucket.<br>
+D. Use an IAM user with access credentials assigned a role providing access to the Score Data DynamoDB table and the
+Game State S3 bucket for distribution with the mobile app.<br>
 
 정답 : A, D
 
 ---
 Q58
-Refer to the architecture diagram above of a batch processing solution using Simple Queue Service (SQS) to set up a message queue between EC2 instances which are used as batch processors Cloud Watch monitors the number of Job requests (queued messages) and an Auto Scaling group adds or deletes batch servers automatically based on parameters set in Cloud Watch alarms.
+Refer to the architecture diagram above of a batch processing solution using Simple Queue Service (SQS) to set up a
+message queue between EC2 instances which are used as batch processors Cloud Watch monitors the number of Job requests (
+queued messages) and an Auto Scaling group adds or deletes batch servers automatically based on parameters set in Cloud
+Watch alarms.
 You can use this architecture to implement which of the following features in a cost effective and efficient manner?
 
-A. Reduce the overall lime for executing jobs through parallel processing by allowing a busy EC2 instance that receives a message to pass it to the next instance in a daisy-chain setup.<br>
-B. Implement fault tolerance against EC2 instance failure since messages would remain in SQS and worn can continue with recovery of EC2 instances implement fault tolerance against SQS failure by backing up messages to S3.<br>
+A. Reduce the overall lime for executing jobs through parallel processing by allowing a busy EC2 instance that receives
+a message to pass it to the next instance in a daisy-chain setup.<br>
+B. Implement fault tolerance against EC2 instance failure since messages would remain in SQS and worn can continue with
+recovery of EC2 instances implement fault tolerance against SQS failure by backing up messages to S3.<br>
 C. Implement message passing between EC2 instances within a batch by exchanging messages through SQS.<br>
 D. Coordinate number of EC2 instances with number of job requests automatically thus Improving cost effectiveness.<br>
 E. Handle high priority jobs before lower priority jobs by assigning a priority metadata field to SQS messages.<br>
 
-정답 : D 
+정답 : D
 
 ---
 Q59
-An International company has deployed a multi-tier web application that relies on DynamoDB in a single region. For regulatory reasons they need disaster recovery capability in a separate region with a Recovery Time Objective of 2 hours and a Recovery Point Objective of 24 hours. They should synchronize their data on a regular basis and be able to provision me web application rapidly using CloudFormation.
-The objective is to minimize changes to the existing web application, control the throughput of DynamoDB used for the synchronization of data and synchronize only the modified elements.
+An International company has deployed a multi-tier web application that relies on DynamoDB in a single region. For
+regulatory reasons they need disaster recovery capability in a separate region with a Recovery Time Objective of 2 hours
+and a Recovery Point Objective of 24 hours. They should synchronize their data on a regular basis and be able to
+provision me web application rapidly using CloudFormation.
+The objective is to minimize changes to the existing web application, control the throughput of DynamoDB used for the
+synchronization of data and synchronize only the modified elements.
 Which design would you choose to meet these requirements?
 
-A. Use AWS data Pipeline to schedule a DynamoDB cross region copy once a day, create a ג€Lastupdatedג€ attribute in your DynamoDB table that would represent the timestamp of the last update and use it as a filter.<br>
-B. Use EMR and write a custom script to retrieve data from DynamoDB in the current region using a SCAN operation and push it to DynamoDB in the second region.<br>
-C. Use AWS data Pipeline to schedule an export of the DynamoDB table to S3 in the current region once a day then schedule another task immediately after it that will import data from S3 to DynamoDB in the other region.<br>
-D. Send also each Ante into an SQS queue in me second region; use an auto-scaling group behind the SQS queue to replay the write in the second region.<br>
+A. Use AWS data Pipeline to schedule a DynamoDB cross region copy once a day, create a ג€Lastupdatedג€ attribute in your
+DynamoDB table that would represent the timestamp of the last update and use it as a filter.<br>
+B. Use EMR and write a custom script to retrieve data from DynamoDB in the current region using a SCAN operation and
+push it to DynamoDB in the second region.<br>
+C. Use AWS data Pipeline to schedule an export of the DynamoDB table to S3 in the current region once a day then
+schedule another task immediately after it that will import data from S3 to DynamoDB in the other region.<br>
+D. Send also each Ante into an SQS queue in me second region; use an auto-scaling group behind the SQS queue to replay
+the write in the second region.<br>
 
 정답 : A
 
@@ -1245,20 +1264,31 @@ Which of the below are viable mitigation techniques? (Choose three.)
 A. Add multiple elastic network interfaces (ENIs) to each EC2 instance to increase the network bandwidth.<br>
 B. Use dedicated instances to ensure that each instance has the maximum performance possible.<br>
 C. Use an Amazon CloudFront distribution for both static and dynamic content.<br>
-D. Use an Elastic Load Balancer with auto scaling groups at the web, app and Amazon Relational Database Service (RDS) tiers<br>
+D. Use an Elastic Load Balancer with auto scaling groups at the web, app and Amazon Relational Database Service (RDS)
+tiers<br>
 E. Add alert Amazon CloudWatch to look for high Network in and CPU utilization.<br>
 F. Create processes and capabilities to quickly add and remove rules to the instance OS firewall.<br>
 
 ---
 Q61
-You must architect the migration of a web application to AWS. The application consists of Linux web servers running a custom web server. You are required to save the logs generated from the application to a durable location.
+You must architect the migration of a web application to AWS. The application consists of Linux web servers running a
+custom web server. You are required to save the logs generated from the application to a durable location.
 What options could you select to migrate the application to AWS? (Choose two.)
 
-A. Create an AWS Elastic Beanstalk application using the custom web server platform. Specify the web server executable and the application project and source files. Enable log file rotation to Amazon Simple Storage Service (S3).<br>
-B. Create Dockerfile for the application. Create an AWS OpsWorks stack consisting of a custom layer. Create custom recipes to install Docker and to deploy your Docker container using the Dockerfile. Create customer recipes to install and configure the application to publish the logs to Amazon CloudWatch Logs.<br>
-C. Create Dockerfile for the application. Create an AWS OpsWorks stack consisting of a Docker layer that uses the Dockerfile. Create custom recipes to install and configure Amazon Kinesis to publish the logs into Amazon CloudWatch.<br>
-D. Create a Dockerfile for the application. Create an AWS Elastic Beanstalk application using the Docker platform and the Dockerfile. Enable logging the Docker configuration to automatically publish the application logs. Enable log file rotation to Amazon S3.<br>
-E. Use VM import/Export to import a virtual machine image of the server into AWS as an AMI. Create an Amazon Elastic Compute Cloud (EC2) instance from AMI, and install and configure the Amazon CloudWatch Logs agent. Create a new AMI from the instance. Create an AWS Elastic Beanstalk application using the AMI platform and the new AMI.<br>
+A. Create an AWS Elastic Beanstalk application using the custom web server platform. Specify the web server executable
+and the application project and source files. Enable log file rotation to Amazon Simple Storage Service (S3).<br>
+B. Create Dockerfile for the application. Create an AWS OpsWorks stack consisting of a custom layer. Create custom
+recipes to install Docker and to deploy your Docker container using the Dockerfile. Create customer recipes to install
+and configure the application to publish the logs to Amazon CloudWatch Logs.<br>
+C. Create Dockerfile for the application. Create an AWS OpsWorks stack consisting of a Docker layer that uses the
+Dockerfile. Create custom recipes to install and configure Amazon Kinesis to publish the logs into Amazon
+CloudWatch.<br>
+D. Create a Dockerfile for the application. Create an AWS Elastic Beanstalk application using the Docker platform and
+the Dockerfile. Enable logging the Docker configuration to automatically publish the application logs. Enable log file
+rotation to Amazon S3.<br>
+E. Use VM import/Export to import a virtual machine image of the server into AWS as an AMI. Create an Amazon Elastic
+Compute Cloud (EC2) instance from AMI, and install and configure the Amazon CloudWatch Logs agent. Create a new AMI from
+the instance. Create an AWS Elastic Beanstalk application using the AMI platform and the new AMI.<br>
 
 s3 rotation란 애플리케시녀 내부의 로그 파일이 일정 크기 이상이되면 s3에 log file을 올리고 새롭게 log file을 생성하는것을 뜻한다.
 
@@ -1266,36 +1296,55 @@ s3 rotation란 애플리케시녀 내부의 로그 파일이 일정 크기 이�
 
 ---
 Q62
-A web company is looking to implement an external payment service into their highly available application deployed in a VPC Their application EC2 instances are behind a public facing ELB. Auto scaling is used to add additional instances as traffic increases under normal load the application runs 2 instances in the Auto
-Scaling group but at peak it can scale 3x in size. The application instances need to communicate with the payment service over the Internet which requires whitelisting of all public IP addresses used to communicate with it. A maximum of 4 whitelisting IP addresses are allowed at a time and can be added through an
+A web company is looking to implement an external payment service into their highly available application deployed in a
+VPC Their application EC2 instances are behind a public facing ELB. Auto scaling is used to add additional instances as
+traffic increases under normal load the application runs 2 instances in the Auto
+Scaling group but at peak it can scale 3x in size. The application instances need to communicate with the payment
+service over the Internet which requires whitelisting of all public IP addresses used to communicate with it. A maximum
+of 4 whitelisting IP addresses are allowed at a time and can be added through an
 API.
 How should they architect their solution?
 
-A. Route payment requests through two NAT instances setup for High Availability and whitelist the Elastic IP addresses attached to the MAT instances.<br>
+A. Route payment requests through two NAT instances setup for High Availability and whitelist the Elastic IP addresses
+attached to the MAT instances.<br>
 B. Whitelist the VPC Internet Gateway Public IP and route payment requests through the Internet Gateway.<br>
 C. Whitelist the ELB IP addresses and route payment requests from the Application servers through the ELB.<br>
-D. Automatically assign public IP addresses to the application instances in the Auto Scaling group and run a script on boot that adds each instances public IP address to the payment validation whitelist API.<br>
+D. Automatically assign public IP addresses to the application instances in the Auto Scaling group and run a script on
+boot that adds each instances public IP address to the payment validation whitelist API.<br>
 
 정답 : A
-ec2가 아니라 NAT의 탄력적 주소를 whitelist로 등록하도록 요청해야합니다. A를 해석해보면 우리가 화이트리스트에 IP주소를 추가한다로 이해되는데, 우리가 추가하는게 아니라 결제서비스업체에 요청해야한다. 
+ec2가 아니라 NAT의 탄력적 주소를 whitelist로 등록하도록 요청해야합니다. A를 해석해보면 우리가 화이트리스트에 IP주소를 추가한다로 이해되는데, 우리가 추가하는게 아니라 결제서비스업체에 요청해야한다.
 그래서 답이 아니라고 생각햇는데 너무 복잡하게 생각햇나보다.
 
 ---
 Q63
-Your website is serving on-demand training videos to your workforce. Videos are uploaded monthly in high resolution MP4 format. Your workforce is distributed globally often on the move and using company-provided tablets that require the HTTP Live Streaming (HLS) protocol to watch a video. Your company has no video transcoding expertise and it required you may need to pay for a consultant.
-How do you implement the most cost-efficient architecture without compromising high availability and quality of video delivery?
+Your website is serving on-demand training videos to your workforce. Videos are uploaded monthly in high resolution MP4
+format. Your workforce is distributed globally often on the move and using company-provided tablets that require the
+HTTP Live Streaming (HLS) protocol to watch a video. Your company has no video transcoding expertise and it required you
+may need to pay for a consultant.
+How do you implement the most cost-efficient architecture without compromising high availability and quality of video
+delivery?
 
-A. A video transcoding pipeline running on EC2 using SQS to distribute tasks and Auto Scaling to adjust the number of nodes depending on the length of the queue. EBS volumes to host videos and EBS snapshots to incrementally backup original files after a few days. CloudFront to serve HLS transcoded videos from EC2.<br>
-B. Elastic Transcoder to transcode original high-resolution MP4 videos to HLS. EBS volumes to host videos and EBS snapshots to incrementally backup original files after a few days. CloudFront to serve HLS transcoded videos from EC2.<br>
-C. Elastic Transcoder to transcode original high-resolution MP4 videos to HLS. S3 to host videos with Lifecycle Management to archive original files to Glacier after a few days. CloudFront to serve HLS transcoded videos from S3.<br>
-D. A video transcoding pipeline running on EC2 using SQS to distribute tasks and Auto Scaling to adjust the number of nodes depending on the length of the queue. S3 to host videos with Lifecycle Management to archive all files to Glacier after a few days. CloudFront to serve HLS transcoded videos from Glacier.<br>
+A. A video transcoding pipeline running on EC2 using SQS to distribute tasks and Auto Scaling to adjust the number of
+nodes depending on the length of the queue. EBS volumes to host videos and EBS snapshots to incrementally backup
+original files after a few days. CloudFront to serve HLS transcoded videos from EC2.<br>
+B. Elastic Transcoder to transcode original high-resolution MP4 videos to HLS. EBS volumes to host videos and EBS
+snapshots to incrementally backup original files after a few days. CloudFront to serve HLS transcoded videos from
+EC2.<br>
+C. Elastic Transcoder to transcode original high-resolution MP4 videos to HLS. S3 to host videos with Lifecycle
+Management to archive original files to Glacier after a few days. CloudFront to serve HLS transcoded videos from S3.<br>
+D. A video transcoding pipeline running on EC2 using SQS to distribute tasks and Auto Scaling to adjust the number of
+nodes depending on the length of the queue. S3 to host videos with Lifecycle Management to archive all files to Glacier
+after a few days. CloudFront to serve HLS transcoded videos from Glacier.<br>
 
 정답 : C
-비디오 트랜스코딩의 지식이 없는 기업에게 D옵션은 현실적으로 불가능하다. AWS Elastic Transcoder라는 서비스를 사용하는것이 합리적이다. 또한 클라우드프론트가 Glacier로부터 데이터를 가져오는건 좀 이상하다. 문제를 꼼꼼히 읽어야한다.
+비디오 트랜스코딩의 지식이 없는 기업에게 D옵션은 현실적으로 불가능하다. AWS Elastic Transcoder라는 서비스를 사용하는것이 합리적이다. 또한 클라우드프론트가 Glacier로부터 데이터를 가져오는건 좀
+이상하다. 문제를 꼼꼼히 읽어야한다.
 
 ---
 Q64
-A user is trying to understand the detailed CloudWatch monitoring concept. Which of the below mentioned services does not provide detailed monitoring with
+A user is trying to understand the detailed CloudWatch monitoring concept. Which of the below mentioned services does
+not provide detailed monitoring with
 CloudWatch?
 
 A. AWS RDS<br>
@@ -1309,7 +1358,9 @@ D. AWS EMR<br>
 
 ---
 Q65
-A customer has established an AWS Direct Connect connection to AWS. The link is up and routes are being advertised from the customer's end, however the customer is unable to connect from EC2 instances inside its VPC to servers residing in its datacenter.
+A customer has established an AWS Direct Connect connection to AWS. The link is up and routes are being advertised from
+the customer's end, however the customer is unable to connect from EC2 instances inside its VPC to servers residing in
+its datacenter.
 Which of the following options provide a viable solution to remedy this situation? (Choose two.)
 
 A. Add a route to the route table with an iPsec VPN connection as the target.<br>
@@ -1320,33 +1371,607 @@ E. Modify the Instances VPC subnet route table by adding a route back to the cus
 
 ---
 Q66
-You are running a news website in the eu-west-1 region that updates every 15 minutes. The website has a world-wide audience. It uses an Auto Scaling group behind an Elastic Load Balancer and an Amazon RDS database. Static content resides on Amazon S3, and is distributed through Amazon CloudFront. Your Auto
-Scaling group is set to trigger a scale up event at 60% CPU utilization. You use an Amazon RDS extra large DB instance with 10.000 Provisioned IOPS, its CPU utilization is around 80%, while freeable memory is in the 2 GB range.
-Web analytics reports show that the average load time of your web pages is around 1.5 to 2 seconds, but your SEO consultant wants to bring down the average load time to under 0.5 seconds.
+You are running a news website in the eu-west-1 region that updates every 15 minutes. The website has a world-wide
+audience. It uses an Auto Scaling group behind an Elastic Load Balancer and an Amazon RDS database. Static content
+resides on Amazon S3, and is distributed through Amazon CloudFront. Your Auto
+Scaling group is set to trigger a scale up event at 60% CPU utilization. You use an Amazon RDS extra large DB instance
+with 10.000 Provisioned IOPS, its CPU utilization is around 80%, while freeable memory is in the 2 GB range.
+Web analytics reports show that the average load time of your web pages is around 1.5 to 2 seconds, but your SEO
+consultant wants to bring down the average load time to under 0.5 seconds.
 How would you improve page load times for your users? (Choose three.)
 
 A. Lower the scale up trigger of your Auto Scaling group to 30% so it scales more aggressively.<br>
 B. Add an Amazon ElastiCache caching layer to your application for storing sessions and frequent DB queries<br>
 C. Configure Amazon CloudFront dynamic content support to enable caching of re-usable content from your site<br>
 D. Switch the Amazon RDS database to the high memory extra large Instance type<br>
-E. Set up a second installation in another region, and use the Amazon Route 53 latency-based routing feature to select the right region.<br>
+E. Set up a second installation in another region, and use the Amazon Route 53 latency-based routing feature to select
+the right region.<br>
 
-정답 : B, C, E 
+정답 : B, C, E
 
 ---
 Q67
-A corporate web application is deployed within an Amazon Virtual Private Cloud (VPC) and is connected to the corporate data center via an IPSec VPN. The application must authenticate against the on-premises LDAP server. After authentication, each logged-in user can only access an Amazon Simple Storage Space
+A corporate web application is deployed within an Amazon Virtual Private Cloud (VPC) and is connected to the corporate
+data center via an IPSec VPN. The application must authenticate against the on-premises LDAP server. After
+authentication, each logged-in user can only access an Amazon Simple Storage Space
 (S3) keyspace specific to that user.
 Which two approaches can satisfy these objectives? (Choose two.)
 
-A. Develop an identity broker that authenticates against IAM security Token service to assume a IAM role in order to get temporary AWS security credentials The application calls the identity broker to get AWS temporary security credentials with access to the appropriate S3 bucket.<br>
-B. The application authenticates against LDAP and retrieves the name of an IAM role associated with the user. The application then calls the IAM Security Token Service to assume that IAM role. The application can use the temporary credentials to access the appropriate S3 bucket.<br>
-C. Develop an identity broker that authenticates against LDAP and then calls IAM Security Token Service to get IAM federated user credentials. The application calls the identity broker to get IAM federated user credentials with access to the appropriate S3 bucket.<br>
-D. The application authenticates against LDAP the application then calls the AWS identity and Access Management (IAM) Security service to log in to IAM using the LDAP credentials the application can use the IAM temporary credentials to access the appropriate S3 bucket.<br>
-E. The application authenticates against IAM Security Token Service using the LDAP credentials the application uses those temporary AWS security credentials to access the appropriate S3 bucket.<br>
+A. Develop an identity broker that authenticates against IAM security Token service to assume a IAM role in order to get
+temporary AWS security credentials The application calls the identity broker to get AWS temporary security credentials
+with access to the appropriate S3 bucket.<br>
+B. The application authenticates against LDAP and retrieves the name of an IAM role associated with the user. The
+application then calls the IAM Security Token Service to assume that IAM role. The application can use the temporary
+credentials to access the appropriate S3 bucket.<br>
+C. Develop an identity broker that authenticates against LDAP and then calls IAM Security Token Service to get IAM
+federated user credentials. The application calls the identity broker to get IAM federated user credentials with access
+to the appropriate S3 bucket.<br>
+D. The application authenticates against LDAP the application then calls the AWS identity and Access Management (IAM)
+Security service to log in to IAM using the LDAP credentials the application can use the IAM temporary credentials to
+access the appropriate S3 bucket.<br>
+E. The application authenticates against IAM Security Token Service using the LDAP credentials the application uses
+those temporary AWS security credentials to access the appropriate S3 bucket.<br>
 
 정답 : B, C
 항상 말이 조금 어려운데 B는 애플리케이션에서 직접 LDAP로그인 -> 로그인정보 기반으로 적절한 IAM 찾음 -> 역할 수임
 C는 브로커라는 분리된 서버가 B의 과정을 도와준다.
 결국 B와 C가 거의 같은 옵션이다.
+
+---
+Q68
+Your company previously configured a heavily used, dynamically routed VPN connection between your on-premises data
+center and AWS. You recently provisioned a DirectConnect connection and would like to start using the new connection.
+After configuring DirectConnect settings in the AWS Console, which of the following options win provide the most
+seamless transition for your users?
+
+A. Delete your existing VPN connection to avoid routing loops configure your DirectConnect router with the appropriate
+settings and verity network traffic is leveraging DirectConnect.<br>
+B. Configure your DirectConnect router with a higher BGP priority man your VPN router, verify network traffic is
+leveraging Directconnect and then delete your existing VPN connection.<br>
+C. Update your VPC route tables to point to the DirectConnect connection configure your DirectConnect router with the
+appropriate settings verify network traffic is leveraging DirectConnect and then delete the VPN connection.<br>
+D. Configure your DirectConnect router, update your VPC route tables to point to the DirectConnect connection, configure
+your VPN connection with a higher BGP priority, and verify network traffic is leveraging the DirectConnect
+connection.<br>
+
+정답 : B
+
+VIF를 만들고 BGP를 설정하면 VIF로 요청이 전달되도록 라우팅 레코드가 설정됩니다.
+
+---
+Q69
+Your company hosts a social media website for storing and sharing documents. The web application allows user to upload
+large files while resuming and pausing the upload as needed. Currently, files are uploaded to your PHP front end backed
+by Elastic Load Balancing and an autoscaling fleet of Amazon Elastic Compute
+Cloud (EC2) instances that scale upon average of bytes received (NetworkIn). After a file has been uploaded, it is
+copied to Amazon Simple Storage Service (S3).
+Amazon EC2 instances use an AWS Identity and Access Management (IAM) role that allows Amazon S3 uploads. Over the last
+six months, your user base and scale have increased significantly, forcing you to increase the Auto Scaling group's Max
+parameter a few times. Your CFO is concerned about rising costs and has asked you to adjust the architecture where
+needed to better optimize costs.
+Which architecture change could you introduce to reduce costs and still keep your web application secure and scalable?
+
+A. Replace the Auto Scaling launch configuration to include c3.8xlarge instances; those instances can potentially yield
+a network throuthput of 10gbps.<br>
+B. Re-architect your ingest pattern, have the app authenticate against your identity provider, and use your identity
+provider as a broker fetching temporary AWS credentials from AWS Secure Token Service (GetFederationToken). Securely
+pass the credentials and S3 endpoint/prefix to your app. Implement client-side logic to directly upload the file to
+Amazon S3 using the given credentials and S3 prefix.<br>
+C. Re-architect your ingest pattern, and move your web application instances into a VPC public subnet. Attach a public
+IP address for each EC2 instance (using the Auto Scaling launch configuration settings). Use Amazon Route 53 Round Robin
+records set and HTTP health check to DNS load balance the app requests; this approach will significantly reduce the cost
+by bypassing Elastic Load Balancing.<br>
+D. Re-architect your ingest pattern, have the app authenticate against your identity provider, and use your identity
+provider as a broker fetching temporary AWS credentials from AWS Secure Token Service (GetFederationToken). Securely
+pass the credentials and S3 endpoint/prefix to your app. Implement client-side logic that used the S3 multipart upload
+API to directly upload the file to Amazon S3 using the given credentials and S3 prefix.<br>
+
+정답 : D
+
+B라고 생각했는데 D가 정답이다. S3에 멀티파트 업로드 API라는 기능이 있다. 이것을 사용하는게 포인트였다. 아래는 지피티의 답변이다.
+
+Amazon S3(Simple Storage Service)에는 멀티파트 업로드라는 기능이 있습니다. 이 기능은 큰 파일을 여러 부분으로 나누어 업로드하는 데 사용되며, 특히 대용량 파일을 효율적으로 업로드하거나
+네트워크 연결이 불안정할 때 매우 유용합니다. 멀티파트 업로드의 주요 특징은 다음과 같습니다:
+
+대용량 파일 업로드: 멀티파트 업로드는 큰 파일을 여러 개의 작은 부분으로 나누어 업로드할 수 있게 해줍니다. 이는 특히 수 GB 이상의 큰 파일을 업로드할 때 유용합니다.
+
+업로드 중단 및 재개: 파일의 각 부분은 독립적으로 업로드됩니다. 따라서 업로드 중에 네트워크 문제가 발생하더라도 이미 업로드된 부분은 다시 업로드할 필요가 없으며, 업로드를 중단한 후 나중에 재개할 수 있습니다.
+
+효율적인 전송: 각 부분을 병렬로 업로드할 수 있어 전체 업로드 시간을 단축할 수 있습니다.
+
+오류 복구: 만약 업로드 중 한 부분이 실패하더라도, 전체 파일을 처음부터 다시 업로드할 필요 없이 실패한 부분만 다시 업로드할 수 있습니다.
+
+---
+Q70
+You require the ability to analyze a customer's clickstream data on a website so they can do behavioral analysis. Your
+customer needs to know what sequence of pages and ads their customer clicked on. This data will be used in real time to
+modify the page layouts as customers click through the site to increase stickiness and advertising click-through.
+Which option meets the requirements for captioning and analyzing this data?
+
+A. Log clicks in weblogs by URL store to Amazon S3, and then analyze with Elastic MapReduce<br>
+B. Push web clicks by session to Amazon Kinesis and analyze behavior using Kinesis workers<br>
+C. Write click events directly to Amazon Redshift and then analyze with SQL<br>
+D. Publish web clicks by session to an Amazon SQS queue then periodically drain these events to Amazon RDS and analyze
+with SQL.<br>
+
+정답 : B
+
+---
+Q71
+You have deployed a three-tier web application in a VPC with a CIDR block of 10.0.0.0/28. You initially deploy two web
+servers, two application servers, two database servers and one NAT instance tor a total of seven EC2 instances. The web,
+application and database servers are deployed across two availability zones
+(AZs). You also deploy an ELB in front of the two web servers, and use Route53 for DNS Web (raffle gradually increases
+in the first few days following the deployment, so you attempt to double the number of instances in each tier of the
+application to handle the new load unfortunately some of these new instances fail to launch.
+Which of the following could be the root caused? (Choose two.)
+
+A. AWS reserves the first and the last private IP address in each subnet's CIDR block so you do not have enough
+addresses left to launch all of the new EC2 instances<br>
+B. The Internet Gateway (IGW) of your VPC has scaled-up, adding more instances to handle the traffic spike, reducing the
+number of available private IP addresses for new instance launches<br>
+C. The ELB has scaled-up, adding more instances to handle the traffic spike, reducing the number of available private IP
+addresses for new instance launches<br>
+D. AWS reserves one IP address in each subnet's CIDR block for Route53 so you do not have enough addresses left to
+launch all of the new EC2 instances<br>
+E. AWS reserves the first four and the last IP address in each subnet's CIDR block so you do not have enough addresses
+left to launch all of the new EC2 instances<br>
+
+정답 : C, E
+
+---
+Q72
+Your company produces customer commissioned one-of-a-kind skiing helmets combining nigh fashion with custom technical
+enhancements Customers can show off their Individuality on the ski slopes and have access to head-up-displays. GPS
+rear-view cams and any other technical innovation they wish to embed in the helmet.
+The current manufacturing process is data rich and complex including assessments to ensure that the custom electronics
+and materials used to assemble the helmets are to the highest standards Assessments are a mixture of human and automated
+assessments you need to add a new set of assessment to model the failure modes of the custom electronics using GPUs with
+CUDA, across a cluster of servers with low latency networking.
+What architecture would allow you to automate the existing process using a hybrid approach and ensure that the
+architecture can support the evolution of processes over time?
+
+A. Use AWS Data Pipeline to manage movement of data & meta-data and assessments Use an auto-scaling group of G2
+instances in a placement group.<br>
+B. Use Amazon Simple Workflow (SWF) to manages assessments, movement of data & meta-data Use an auto-scaling group of G2
+instances in a placement group.<br>
+C. Use Amazon Simple Workflow (SWF) to manages assessments movement of data & meta-data Use an auto-scaling group of C3
+instances with SR-IOV (Single Root I/O Virtualization).<br>
+D. Use AWS data Pipeline to manage movement of data & meta-data and assessments use auto-scaling group of C3 with
+SR-IOV (Single Root I/O virtualization).<br>
+
+정답 : B
+
+
+---
+Q73
+You are designing an SSL/TLS solution that requires HTTPS clients to be authenticated by the Web server using client
+certificate authentication. The solution must be resilient.
+Which of the following options would you consider for configuring the web server infrastructure? (Choose two.)
+A. Configure ELB with TCP listeners on TCP/443. And place the Web servers behind it.
+B. Configure your Web servers with EIPs. Place the Web servers in a Route53 Record Set and configure health checks
+against all Web servers.
+C. Configure ELB with HTTPS listeners, and place the Web servers behind it.
+D. Configure your web servers as the origins for a CloudFront distribution. Use custom SSL certificates on your
+CloudFront distribution.
+
+정답 : A, B
+
+SSL처리를 웹서버에서 하고싶다는게 요구사항이다.
+
+---
+Q74 You are migrating a legacy client-server application to AWS. The application responds to a specific DNS domain (
+e.g. www.example.com) and has a 2-tier architecture, with multiple application servers and a database server. Remote
+clients use TCP to connect to the application servers. The application servers need to know the IP address of the
+clients in order to function properly and are currently taking that information from the TCP socket. A Multi-AZ RDS
+MySQL instance will be used for the database.
+During the migration you can change the application code, but you have to file a change request.
+How would you implement the architecture on AWS in order to maximize scalability and high availability?
+
+A. File a change request to implement Alias Resource support in the application. Use Route 53 Alias Resource Record to
+distribute load on two application servers in different Azs.<br>
+B. File a change request to implement Latency Based Routing support in the application. Use Route 53 with Latency Based
+Routing enabled to distribute load on two application servers in different Azs.<br>
+C. File a change request to implement Cross-Zone support in the application. Use an ELB with a TCP Listener and
+Cross-Zone Load Balancing enabled, two application servers in different AZs.<br>
+D. File a change request to implement Proxy Protocol support in the application. Use an ELB with a TCP Listener and
+Proxy Protocol enabled to distribute load on two application servers in different Azs.<br>
+
+정답 : C
+
+ALB에서 TCP 리스너로 보내려면 Proxy Protocol를 사용해야만이 IP주소를 보낼 수 있다. 하지만 NLB는 IP주소를 별다른 설정없이 보낼 수 있다.
+그래서 NLB를 사용하면서 Cross-Zone을 사용하는게 최적이다.
+
+---
+Q75
+You are designing a personal document-archiving solution for your global enterprise with thousands of employees. Each
+employee has potentially gigabytes of data to be backed up in this archiving solution. The solution will be exposed to
+the employees as an application, where they can just drag and drop their files to the archiving system. Employees can
+retrieve their archives through a web interface. The corporate network has high bandwidth AWS Direct Connect
+connectivity to
+AWS.
+You have a regulatory requirement that all data needs to be encrypted before being uploaded to the cloud.
+How do you implement this in a highly available and cost-efficient way?
+
+A. Manage encryption keys on-premises in an encrypted relational database. Set up an on-premises server with sufficient
+storage to temporarily store files, and then upload them to Amazon S3, providing a client-side master key.<br>
+B. Mange encryption keys in a Hardware Security Module (HSM) appliance on-premises serve r with sufficient storage to
+temporarily store, encrypt, and upload files directly into Amazon Glacier.<br>
+C. Manage encryption keys in Amazon Key Management Service (KMS), upload to Amazon Simple Storage Service (S3) with
+client-side encryption using a KMS customer master key ID, and configure Amazon S3 lifecycle policies to store each
+object using the Amazon Glacier storage tier.<br>
+D. Manage encryption keys in an AWS CloudHSM appliance. Encrypt files prior to uploading on the employee desktop, and
+then upload directly into Amazon Glacier.<br>
+
+정답 : C
+
+---
+Q76
+A company is building a voting system for a popular TV show, viewers win watch the performances then visit the show's
+website to vote for their favorite performer. It is expected that in a short period of time after the show has finished
+the site will receive millions of visitors. The visitors will first login to the site using their Amazon.com credentials
+and then submit their vote. After the voting is completed the page will display the vote totals. The company needs to
+build the site such that can handle the rapid influx of traffic while maintaining good performance but also wants to
+keep costs to a minimum.
+Which of the design patterns below should they use?
+
+A. Use CloudFront and an Elastic Load balancer in front of an auto-scaled set of web servers, the web servers will first
+call the Login With Amazon service to authenticate the user then process the users vote and store the result into a
+multi-AZ Relational Database Service instance.<br>
+B. Use CloudFront and the static website hosting feature of S3 with the Javascript SDK to call the Login With Amazon
+service to authenticate the user, use IAM Roles to gain permissions to a DynamoDB table to store the users vote.<br>
+C. Use CloudFront and an Elastic Load Balancer in front of an auto-scaled set of web servers, the web servers will first
+call the Login with Amazon service to authenticate the user, the web servers will process the users vote and store the
+result into a DynamoDB table using IAM Roles for EC2 instances to gain permissions to the DynamoDB table.<br>
+D. Use CloudFront and an Elastic Load Balancer in front of an auto-scaled set of web servers, the web servers will first
+call the Login With Amazon service to authenticate the user, the web servers win process the users vote and store the
+result into an SQS queue using IAM Roles for EC2 Instances to gain permissions to the SQS queue. A set of application
+servers will then retrieve the items from the queue and store the result into a DynamoDB table.<br>
+
+정답 : D
+
+---
+Q77
+You are designing a connectivity solution between on-premises infrastructure and Amazon VPC. Your servers on-premises
+will be communicating with your VPC instances. You will be establishing IPSec tunnels over the Internet You will be
+using VPN gateways, and terminating the IPSec tunnels on AWS supported customer gateways.
+Which of the following objectives would you achieve by implementing an IPSec tunnel as outlined above? (Choose four.)
+
+A. End-to-end protection of data in transit<br>
+B. End-to-end Identity authentication<br>
+C. Data encryption across the Internet<br>
+D. Protection of data in transit over the Internet<br>
+E. Peer identity authentication between VPN gateway and customer gateway<br>
+F. Data integrity protection across the Internet<br>
+
+정답 C, D, E, F
+
+VPN은 A,B가 제공하는 end to end 암호화를 제공하지않는다.
+
+---
+Q78
+An ecommerce company wants to redirect users to a country-specific website when they enter the example.com website. For
+example, the company wants to redirect United States users to example.com/us/ and wants to redirect French users to
+example.com/fr/. The web application is using Amazon CloudFront and an
+Application Load Balancer with an Amazon Elastic Container Service (Amazon ECS) cluster. The application's domain name
+resolution is configured in an
+Amazon Route 53 public hosted zone.
+Which solution will meet these requirements with the LEAST operational effort?
+
+A. Update the routing policy for the application's Route 53 record to specify geolocation routing. Configure listener
+rules based on a unique alias location to redirect requests to the correct URLs by country.<br>
+B. Create a CloudFront function to inspect the CloudFront-Viewer-Country header and return redirect responses to
+different URLs based on user location.<br>
+C. On the ECS web server configuration, use a GeoIP database to look up the requested IP address and redirect requests
+to the correct URLs by country.<br>
+D. Use AWS WAF to determine the country of origin. Create an AWS WAF custom rule with a geographic match condition to
+redirect traffic from each country to the correct URL.<br>
+
+정답 : B
+A를 골랐었지만 route53은 도메인의 값만 변경할 수 있다고 한다. 반면에 클라우드 프론트는 사용자의 위치에 따라 적절한 path로 리다이랙트가 가능하다고한다.
+
+아래는 지피티의 대답이다.
+
+Amazon CloudFront는 주로 콘텐츠 전송 네트워크(CDN)로 사용되며, 사용자에게 빠르게 정적 파일을 제공하는 것이 주 목적입니다. 그러나 CloudFront는 단순히 정적 콘텐츠 전송을 넘어서 동적
+콘텐츠 처리 및 사용자 요청에 따른 리디렉션을 지원하는 기능도 제공합니다.
+
+CloudFront의 동적 콘텐츠 처리 기능을 사용하면, 사용자의 위치, 디바이스 유형, 쿠키 등의 요청 특성에 따라 콘텐츠를 사용자 정의할 수 있습니다. 또한, CloudFront 함수를 사용하여 사용자 요청의
+특정 헤더(예: CloudFront-Viewer-Country)를 분석하고 이를 기반으로 국가별 URL로 리디렉션하는 것도 가능합니다.
+
+이 경우, CloudFront 함수는 사용자의 위치 정보를 확인하고, 이를 기반으로 국가별로 적절한 웹사이트로 동적으로 리디렉션하는 역할을 합니다. 이는 CloudFront가 단순히 정적 콘텐츠를 전송하는 것을
+넘어서, 사용자의 요청에 기반하여 동적으로 처리하는 기능을 제공한다는 것을 의미합니다.
+
+---
+Q78
+You are responsible for a web application that consists of an Elastic Load Balancing (ELB) load balancer in front of an
+Auto Scaling group of Amazon Elastic
+Compute Cloud (EC2) instances. For a recent deployment of a new version of the application, a new Amazon Machine Image (
+AMI) was created, and the Auto
+Scaling group was updated with a new launch configuration that refers to this new AMI. During the deployment, you
+received complaints from users that the website was responding with errors. All instances passed the ELB health checks.
+What should you do in order to avoid errors for future deployments? (Choose two.)
+
+A. Add an Elastic Load Balancing health check to the Auto Scaling group. Set a short period for the health checks to
+operate as soon as possible in order to prevent premature registration of the instance to the load balancer.<br>
+B. Enable EC2 instance CloudWatch alerts to change the launch configuration's AMI to the previous one. Gradually
+terminate instances that are using the new AMI.<br>
+C. Set the Elastic Load Balancing health check configuration to target a part of the application that fully tests
+application health and returns an error if the tests fail.<br>
+D. Create a new launch configuration that refers to the new AMI, and associate it with the group. Double the size of the
+group, wait for the new instances to become healthy, and reduce back to the original size. If new instances do not
+become healthy, associate the previous launch configuration.<br>
+E. Increase the Elastic Load Balancing Unhealthy Threshold to a higher value to prevent an unhealthy instance from going
+into service behind the load balancer.<br>
+
+정답 : C, D
+ELB의 헬스체크는 인스턴스에 프로세스가 잘 떳는지 정도 보는거고 인스턴스의 헬스체크가 실제 로직에 이상이 없는지 확인하는것이라고한다.
+
+---
+Q79
+Which is a valid Amazon Resource name (ARN) for IAM?
+
+A. aws:iam::123456789012:instance-profile/Webserver<br>
+B. arn:aws:iam::123456789012:instance-profile/Webserver<br>
+C. 123456789012:aws:iam::instance-profile/Webserver<br>
+D. arn:aws:iam::123456789012::instance-profile/Webserver<br>
+
+정답 : B
+
+원래 :가 맞지만 iam과 123456789012사이에 region이 들어가야하는데 iam은 글로벌서비스라서 region이 블랭크이다.
+
+---
+Q80
+Dave is the main administrator in Example Corp., and he decides to use paths to help delineate the users in the company
+and set up a separate administrator group for each path-based division. Following is a subset of the full list of paths
+he plans to use:
+
+* /marketing
+* /sales
+* /legal
+  Dave creates an administrator group for the marketing part of the company and calls it Marketing_Admin.
+  He assigns it the /marketing path. The group's ARN is arn:aws:iam::123456789012:group/marketing/Marketing_Admin.
+  Dave assigns the following policy to the Marketing_Admin group that gives the group permission to use all IAM actions
+  with all groups and users in the /marketing path. The policy also gives the Marketing_Admin group permission to
+  perform any AWS S3 actions on the objects in the portion of the corporate bucket.
+  {
+  "Version": "2012-10-17",
+  "Statement": [
+  {
+  "Effect": "Deny",
+  "Action": "iam:*",
+  "Resource": [
+  "arn:aws:iam::123456789012:group/marketing/*",
+  "arn:aws:iam::123456789012:user/marketing/*"
+  ]
+  },
+  {
+  "Effect": "Allow",
+  "Action": "s3:*",
+  "Resource": "arn:aws:s3:::example_bucket/marketing/*"
+  },
+  {
+  "Effect": "Allow",
+  "Action": "s3:ListBucket*",
+  "Resource": "arn:aws:s3:::example_bucket",
+  "Condition":{"StringLike":{"s3:prefix": "marketing/*"}}
+  }
+  ]
+  }
+
+  A. True<br>
+  B. False<br>
+
+  정답 : B
+  문제가 조금 이상한데 deny가 가장 우선시되므로 접근이 거절된다.
+
+---
+Q81
+Your fortune 500 company has under taken a TCO analysis evaluating the use of Amazon S3 versus acquiring more hardware
+The outcome was that ail employees would be granted access to use Amazon S3 for storage of their personal documents.
+Which of the following will you need to consider so you can set up a solution that incorporates single sign-on from your
+corporate AD or LDAP directory and restricts access for each user to a designated user folder in a bucket? (Choose
+three.)
+
+A. Setting up a federation proxy or identity provider<br>
+B. Using AWS Security Token Service to generate temporary tokens<br>
+C. Tagging each folder in the bucket<br>
+D. Configuring IAM role<br>
+E. Setting up a matching IAM user for every user in your corporate directory that needs access to a folder in the
+bucket<br>
+
+정답 : A, B ,C
+
+---
+Q82
+A company is running a batch analysis every hour on their main transactional DB, running on an RDS MySQL instance, to
+populate their central Data Warehouse running on Redshift. During the execution of the batch, their transactional
+applications are very slow. When the batch completes they need to update the top management dashboard with the new data.
+The dashboard is produced by another system running on-premises that is currently started when a manually-sent email
+notifies that an update is required. The on-premises system cannot be modified because is managed by another team.
+How would you optimize this scenario to solve performance issues and automate the process as much as possible?
+
+A. Replace RDS with Redshift for the batch analysis and SNS to notify the on-premises system to update the dashboard<br>
+B. Replace RDS with Redshift for the oaten analysis and SQS to send a message to the on-premises system to update the
+dashboard<br>
+C. Create an RDS Read Replica for the batch analysis and SNS to notify me on-premises system to update the dashboard<br>
+D. Create an RDS Read Replica for the batch analysis and SQS to send a message to the on-premises system to update the
+dashboard.<br>
+
+정답 : C
+
+---
+Q83
+You are running a successful multitier web application on AWS and your marketing department has asked you to add a
+reporting tier to the application. The reporting tier will aggregate and publish status reports every 30 minutes from
+user-generated information that is being stored in your web application s database.
+You are currently running a Multi-AZ RDS MySQL instance for the database tier. You also have implemented Elasticache as
+a database caching layer between the application tier and database tier.
+Please select the answer that will allow you to successfully implement the reporting tier with as little impact as
+possible to your database.
+
+A. Continually send transaction logs from your master database to an S3 bucket and generate the reports off the S3
+bucket using S3 byte range requests.<br>
+B. Generate the reports by querying the synchronously replicated standby RDS MySQL instance maintained through
+Multi-AZ.<br>
+C. Launch a RDS Read Replica connected to your Multi AZ master database and generate reports by querying the Read
+Replica.<br>
+D. Generate the reports by querying the ElastiCache database caching tier.<br>
+
+정답 : C
+
+---
+Q84
+You are designing a data leak prevention solution for your VPC environment. You want your VPC Instances to be able to
+access software depots and distributions on the Internet for product updates. The depots and distributions are
+accessible via third party CDNs by their URLs.
+You want to explicitly deny any other outbound connections from your VPC instances to hosts on the internet.
+Which of the following options would you consider?
+
+A. Configure a web proxy server in your VPC and enforce URL-based rules for outbound access Remove default routes.<br>
+B. Implement security groups and configure outbound rules to only permit traffic to software depots.<br>
+C. Move all your instances into private VPC subnets remove default routes from all routing tables and add specific
+routes to the software depots and distributions only.<br>
+D. Implement network access control lists to all specific destinations, with an Implicit deny all rule.<br>
+
+정답 : A
+특정 저장소에 url 기반으로 고객의 인스턴스가 접근할 수 있어야하며 다른 아웃바운드 트래픽은 전부 차단해야한다.
+
+---
+Q85
+You have an application running on an EC2 instance which will allow users to download files from a private S3 bucket
+using a pre-signed URL. Before generating the URL, the application should verify the existence of the file in S3.
+How should the application use AWS credentials to access the S3 bucket securely?
+
+A. Use the AWS account access keys; the application retrieves the credentials from the source code of the
+application.<br>
+B. Create an IAM role for EC2 that allows list access to objects in the S3 bucket; launch the Instance with the role,
+and retrieve the role's credentials from the EC2 instance metadata.<br>
+C. Create an IAM user for the application with permissions that allow list access to the S3 bucket; the application
+retrieves the IAM user credentials from a temporary directory with permissions that allow read access only to the
+Application user.<br>
+D. Create an IAM user for the application with permissions that allow list access to the S3 bucket; launch the instance
+as the IAM user, and retrieve the IAM user's credentials from the EC2 instance user data.<br>
+ 
+---
+Q86
+Your system recently experienced down time during the troubleshooting process. You found that a new administrator mistakenly terminated several production
+EC2 instances.
+Which of the following strategies will help prevent a similar situation in the future?
+The administrator still must be able to:
+✑ launch, start stop, and terminate development resources.
+✑ launch and start production instances.
+
+A. Create an IAM user, which is not allowed to terminate instances by leveraging production EC2 termination protection.<br>
+B. Leverage resource based tagging, along with an IAM user which can prevent specific users from terminating production, EC2 resources.<br>
+C. Leverage EC2 termination protection and multi-factor authentication, which together require users to authenticate before terminating EC2 instances<br>
+D. Create an IAM user and apply an IAM role which prevents users from terminating production EC2 instances.<br>
+
+정답 : C
+
+---
+Q87
+A 3-tier e-commerce web application is current deployed on-premises and will be migrated to AWS for greater scalability and elasticity. The web server currently shares read-only data using a network distributed file system. The app server tier uses a clustering mechanism for discovery and shared session state that depends on IP multicast. The database tier uses shared-storage clustering to provide database fall over capability, and uses several read slaves for scaling. Data on all servers and the distributed file system directory is backed up weekly to off-site tapes.
+Which AWS storage and database architecture meets the requirements of the application?
+
+A. Web servers: store read-only data in S3, and copy from S3 to root volume at boot time. App servers: share state using a combination of DynamoDB and IP unicast. Database: use RDS with multi-AZ deployment and one or more read replicas. Backup: web servers, app servers, and database backed up weekly to Glacier using snapshots.<br>
+B. Web servers: store read-only data in an EC2 NFS server; mount to each web server at boot time. App servers: share state using a combination of DynamoDB and IP multicast. Database: use RDS with multi-AZ deployment and one or more Read Replicas. Backup: web and app servers backed up weekly via AMIs, database backed up via DB snapshots.<br>
+C. Web servers: store read-only data in S3, and copy from S3 to root volume at boot time. App servers: share state using a combination of DynamoDB and IP unicast. Database: use RDS with multi-AZ deployment and one or more Read Replicas. Backup: web and app servers backed up weekly via AMIs, database backed up via DB snapshots.<br>
+D. Web servers: store read-only data in S3, and copy from S3 to root volume at boot time. App servers: share state using a combination of DynamoDB and IP unicast. Database: use RDS with multi-AZ deployment. Backup: web and app servers backed up weekly via AMIs, database backed up via DB snapshots.<br>
+
+정답 : C
+
+C가 AWS의 권장 접근 방식과 일치합니다. AWS는 RDS를 사용하여 데이터베이스를 배포하고 AMI 및 DB 스냅샷을 사용하여 백업하는 것을 권장합니다. 옵션 C는 이러한 권장 사항을 따릅니다.
+
+---
+Q88
+Your company plans to host a large donation website on Amazon Web Services (AWS). You anticipate a large and undetermined amount of traffic that will create many database writes. To be certain that you do not drop any writes to a database hosted on AWS.
+Which service should you use?
+
+A. Amazon RDS with provisioned IOPS up to the anticipated peak write throughput.<br>
+B. Amazon Simple Queue Service (SQS) for capturing the writes and draining the queue to write to the database.<br>
+C. Amazon ElastiCache to store the writes until the writes are committed to the database.<br>
+D. Amazon DynamoDB with provisioned write throughput up to the anticipated peak write throughput.<br>
+
+정답 : B
+
+---
+Q89
+You need a persistent and durable storage to trace call activity of an IVR (Interactive Voice Response) system. Call duration is mostly in the 2-3 minutes timeframe. Each traced call can be either active or terminated. An external application needs to know each minute the list of currently active calls. Usually there are a few calls/second, but once per month there is a periodic peak up to 1000 calls/second for a few hours. The system is open 24/7 and any downtime should be avoided. Historical data is periodically archived to files. Cost saving is a priority for this project.
+What database implementation would better fit this scenario, keeping costs as low as possible?
+
+A. Use DynamoDB with a "Calls" table and a Global Secondary Index on a "State" attribute that can equal to "active" or "terminated". In this way the Global Secondary Index can be used for all items in the table.<br>
+B. Use RDS Multi-AZ with a "CALLS" table and an indexed "STATE" field that can be equal to "ACTIVE" or 'TERMINATED". In this way the SQL query is optimized by the use of the Index.<br>
+C. Use RDS Multi-AZ with two tables, one for "ACTIVE_CALLS" and one for "TERMINATED_CALLS". In this way the "ACTIVE_CALLS" table is always small and effective to access.<br>
+D. Use DynamoDB with a "Calls" table and a Global Secondary Index on a "IsActive" attribute that is present for active calls only. In this way the Global Secondary Index is sparse and more effective.<br>
+
+정답 : D
+
+GSI로 isActive를 등록하고 희소 인덱싱을 사용하면 된다.
+
+---
+Q90
+Your company hosts a social media site supporting users in multiple countries. You have been asked to provide a highly available design tor the application that leverages multiple regions tor the most recently accessed content and latency sensitive portions of the wet) site The most latency sensitive component of the application involves reading user preferences to support web site personalization and ad selection.
+In addition to running your application in multiple regions, which option will support this application's requirements?
+
+A. Serve user content from S3. CloudFront and use Route53 latency-based routing between ELBs in each region Retrieve user preferences from a local DynamoDB table in each region and leverage SQS to capture changes to user preferences with SOS workers for propagating updates to each table.<br>
+B. Use the S3 Copy API to copy recently accessed content to multiple regions and serve user content from S3. CloudFront with dynamic content and an ELB in each region Retrieve user preferences from an ElasticCache cluster in each region and leverage SNS notifications to propagate user preference changes to a worker node in each region.<br>
+C. Use the S3 Copy API to copy recently accessed content to multiple regions and serve user content from S3 CloudFront and Route53 latency-based routing Between ELBs In each region Retrieve user preferences from a DynamoDB table and leverage SQS to capture changes to user preferences with SOS workers for propagating DynamoDB updates.<br>
+D. Serve user content from S3. CloudFront with dynamic content, and an ELB in each region Retrieve user preferences from an ElastiCache cluster in each region and leverage Simple Workflow (SWF) to manage the propagation of user preferences from a centralized OB to each ElastiCache cluster.<br>
+
+---
+Q91
+You've been brought in as solutions architect to assist an enterprise customer with their migration of an e-commerce platform to Amazon Virtual Private Cloud
+(VPC) The previous architect has already deployed a 3-tier VPC.
+The configuration is as follows:
+
+VPC: vpc-2f8bc447 -
+
+IGW: igw-2d8bc445 -
+
+NACL: ad-208bc448 -
+Subnets and Route Tables:
+
+Web servers: subnet-258bc44d -
+Application servers: subnet-248bc44c
+Database servers: subnet-9189c6f9
+Route Tables:
+rrb-218bc449
+rtb-238bc44b
+Associations:
+subnet-258bc44d : rtb-218bc449
+subnet-248bc44c : rtb-238bc44b
+subnet-9189c6f9 : rtb-238bc44b
+You are now ready to begin deploying EC2 instances into the VPC Web servers must have direct access to the internet Application and database servers cannot have direct access to the internet.
+Which configuration below will allow you the ability to remotely administer your application and database servers, as well as allow these servers to retrieve updates from the Internet?
+
+A. Create a bastion and NAT instance in subnet-258bc44d, and add a route from rtb- 238bc44b to the NAT instance.<br>
+B. Add a route from rtb-238bc44b to igw-2d8bc445 and add a bastion and NAT instance within subnet-248bc44c.<br>
+C. Create a bastion and NAT instance in subnet-248bc44c, and add a route from rtb- 238bc44b to subnet-258bc44d.<br>
+D. Create a bastion and NAT instance in subnet-258bc44d, add a route from rtb-238bc44b to Igw-2d8bc445, and a new NACL that allows access between subnet-258bc44d and subnet-248bc44c.<br>
+
+정답 : A
+
+---
+Q92
+You are designing a multi-platform web application for AWS The application will run on EC2 instances and will be accessed from PCs. Tablets and smart phones
+Supported accessing platforms are Windows, MacOS, IOS and Android Separate sticky session and SSL certificate setups are required for different platform types.
+Which of the following describes the most cost effective and performance efficient architecture setup?
+
+A. Setup a hybrid architecture to handle session state and SSL certificates on-prem and separate EC2 Instance groups running web applications for different platform types running in a VPC.<br>
+B. Set up one ELB for all platforms to distribute load among multiple instance under it Each EC2 instance implements ail functionality for a particular platform.<br>
+C. Set up two ELBs The first ELB handles SSL certificates for all platforms and the second ELB handles session stickiness for all platforms for each ELB run separate EC2 instance groups to handle the web application for each platform.<br>
+D. Assign multiple ELBS to an EC2 instance or group of EC2 instances running the common components of the web application, one ELB for each platform type Session stickiness and SSL termination are done at the ELBs.<br>
+
+정답 : D
+
+---
+Q93
+An administrator is using Amazon CloudFormation to deploy a three tier web application that consists of a web tier and application tier that will utilize Amazon
+DynamoDB for storage when creating the CloudFormation template.
+Which of the following would allow the application instance access to the DynamoDB tables without exposing API credentials?
+
+A. Create an Identity and Access Management Role that has the required permissions to read and write from the required DynamoDB table and associate the Role to the application instances by referencing an instance profile.<br>
+B. Use the Parameter section in the Cloud Formation template to nave the user input Access and Secret Keys from an already created IAM user that has me permissions required to read and write from the required DynamoDB table.<br>
+C. Create an Identity and Access Management Role that has the required permissions to read and write from the required DynamoDB table and reference the Role in the instance profile property of the application instance.<br>
+D. Create an identity and Access Management user in the CloudFormation template that has permissions to read and write from the required DynamoDB table, use the GetAtt function to retrieve the Access and secret keys and pass them to the application instance through user-data.<br>
 

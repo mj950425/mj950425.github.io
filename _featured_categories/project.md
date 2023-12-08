@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: experience
+title: project
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: experience
+slug: project
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  회고 글을 공유합니다. 
+  프로젝트에 대한 경험을 공유합니다. 
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true

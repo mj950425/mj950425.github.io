@@ -10,7 +10,7 @@ slug: experience
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  회고 글을 공유합니다. 
+  프로젝트에 대한 경험을 공유합니다. 
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
