@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "시스템 분리에 대한 회고"
-date: 2023-11-13 08:46:00 +0900
+date: 2023-12-09 08:46:00 +0900
 categories:
   - experience
   - project
