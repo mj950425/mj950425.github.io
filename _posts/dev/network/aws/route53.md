@@ -1,3 +1,5 @@
+# Route53
+
 1. 직접 'mj950425.github.io'를 브라우저에 입력했을 때:
    브라우저 요청: 사용자가 브라우저에 'mj950425.github.io'를 입력하고 엔터를 누릅니다.
    DNS 조회: 브라우저는 DNS 시스템을 통해 'mj950425.github.io'의 IP 주소를 찾습니다.
@@ -51,3 +53,65 @@ ChatGPT
 'Host' 헤더에 명시된 도메인 이름을 기반으로, 서버는 해당 도메인에 연결된 특정 GitHub 사용자의 저장소에서 호스팅되는 웹 페이지나 자원을 찾아 사용자에게 제공합니다. 이는 '가상 호스팅'이라는 방식으로, 하나의 서버가 다수의 웹사이트를 서비스할 수 있게 해주는 기술입니다.
 
 그래서 만약 www.minj-blog.com으로 요청이 들어온다면, 서버는 'Host' 헤더를 보고 이 요청이 해당하는 GitHub 저장소의 설정을 참조하여 적절한 웹 페이지를 반환하게 됩니다. 만약 GitHub Pages 설정에 www.minj-blog.com이 등록되어 있지 않다면, 서버는 이 요청에 대한 적절한 자원을 찾을 수 없고, 결과적으로 사용자에게 404 오류를 반환하게 됩니다.
+
+- A : maps a hostname to IPv4
+- AAAA : maps a hostname to IPv6
+- CNAME : maps a hostname to another hostname
+  - example.com 으로는 CNAME을 만들 수 없고, www.example.com 으로 만들어야한다.
+- NS : control how traffic is routed for a domain
+
+ALB의 lbl-1234.us-east-2.elb.amazonaws.com 이라는 DNS을 myapp.mydomain.com 으로 매핑하려고한다면
+
+CNAME
+hostname to hostname인데 루트 도메인이 아니어야한다.
+Alias 
+루트 도메인이어도 된다.
+따라서 ALB는 Alias로 해야한다.
+하지만 다른건 다 되는데 EC2 DNS를 Alias를 할 수 없다.
+
+ttl이 있다.
+
+하나의 dns에 여러개의 ip가 mapping될 수 있다. 
+이 경우 클라이언트에게 여러개의 ip를 건네주면, 클라이언트가 그 중에 랜덤하게 고른다.
+
+weighted
+라우팅 비중을 다르게할 수 있다.
+
+latency
+레이턴시 기반
+
+public dns
+
+private dns
+
+dns resolver란?
+
+Title: Setting Up a Wildcard SSL Certificate on AWS: A Step-by-Step Guide
+
+Securing your web application with HTTPS is not just a good practice; it's a necessity. Here's a straightforward guide on how to set up a wildcard SSL/TLS certificate for your domain using AWS Certificate Manager (ACM).
+
+Step 1: Request Your Wildcard Certificate
+
+Log in to the AWS Certificate Manager (ACM) service.
+Choose to provision a new certificate and specify your domain in the format *.yourdomain.com. This wildcard notation ensures the certificate covers all subdomains.
+Step 2: Prove Your Domain Ownership to ACM
+
+ACM will need to verify that you actually control the domain for which you're requesting the certificate.
+Choose DNS validation. ACM will then generate a CNAME record that you'll use in the next step.
+Step 3: Add the CNAME Record to Your Domain's DNS Configuration
+
+Access your domain's DNS settings, which might be in AWS Route 53 or another domain hosting provider.
+Add the CNAME record provided by ACM. This step is like leaving a digital signature on your domain's DNS records to prove that it's really yours.
+Step 4: ACM Issues Your Certificate
+
+Once ACM detects the CNAME record and confirms everything checks out, your certificate status will change to "Issued."
+Note that the certificate isn't something you download; ACM handles it entirely, associating it with your AWS resources.
+Step 5: Attach the Certificate to Your AWS Resources
+
+Now that your certificate is ready, you can attach it to your Application Load Balancer (ALB) or any other AWS service that needs it.
+Configure your ALB with an HTTPS listener and select your newly issued wildcard certificate for it.
+Step 6: Celebrate a Secure Connection
+
+After you've pointed your domain (like subdomain.yourdomain.com) to the ALB, and the DNS changes have propagated, your application should be accessible via HTTPS.
+You'll see a padlock symbol in the browser's address bar when visiting your website, indicating that the connection is secure.
+And there you have it! Your application is now using a secure communication protocol, which not only protects your users' data but also boosts your SEO rankings and trustworthiness

@@ -608,6 +608,14 @@ com in the region where you disabled the servers.<br>
 
 정답 : B, E
 
+Route53을 통해서 레코드에 따른 health check가 가능합니다. AWS Route 53의 지연 시간 기반 라우팅(Latency-Based Routing)을 사용하면, 사용자가 가장 가까운 리전의 서버에 자동으로 연결되도록 할 수 있습니다.
+
+만약 해당 리전의 모든 서버(A 레코드)가 다운되었다면, Route 53은 다른 리전으로 요청을 자동으로 라우팅합니다.
+
+이를 위해서는 각 리전의 서버 상태를 모니터링하는 HTTP 헬스 체크와 "Evaluate Target Health" 설정을 올바르게 구성해야 합니다. 
+
+헬스 체크가 활성화되어 있고 "Evaluate Target Health"가 "Yes"로 설정되어 있다면, Route 53은 비정상적인 서버를 감지하고, 사용자 요청을 건강한 서버가 위치한 다른 리전으로 자동으로 라우팅합니다.
+
 ---
 Q32
 Your startup wants to implement an order fulfillment process for selling a personalized gadget that needs an average of
@@ -665,6 +673,8 @@ monitored with CloudWatch and multi-AZ RDS.<br>
 
 정답 : A
 
+multi-AZ는 높은 트래픽에 감당하기 위함보다는 장애복구를 위한것입니다.
+
 ---
 Q34
 
@@ -688,7 +698,7 @@ E. Record the user's information in Amazon DynamoDB. When the user uses their mo
 using AWS Security Token Service with appropriate permissions. Store these credentials in the mobile app's memory and
 use them to access Amazon S3. Generate new credentials the next time the user runs the mobile app.<br>
 
-정답 : D
+정답 : D or E
 
 1. 사용자 회원가입
 
@@ -712,6 +722,63 @@ use them to access Amazon S3. Generate new credentials the next time the user ru
 
 임시 자격 증명은 제한된 시간 동안만 유효합니다. 만료되면, 사용자는 다시 로그인하여 새로운 임시 자격 증명을 요청해야 합니다.
 
+아래는 예시 코드이다.
+```
+import software.amazon.awssdk.auth.credentials.AwsSessionCredentials
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
+import software.amazon.awssdk.regions.Region
+import software.amazon.awssdk.services.sts.StsClient
+import software.amazon.awssdk.services.sts.model.AssumeRoleRequest
+import software.amazon.awssdk.services.s3.S3Client
+
+fun assumeRoleForUser(userId: String): AwsSessionCredentials {
+val stsClient = StsClient.builder()
+.region(Region.AWS_GLOBAL)
+.build()
+
+    val sessionName = "user-$userId-session"
+    val policy = """
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": "s3:*",
+                    "Resource": "arn:aws:s3:::your-bucket-name/$userId/*"
+                }
+            ]
+        }
+    """.trimIndent()
+
+    val assumeRoleRequest = AssumeRoleRequest.builder()
+        .roleArn("arn:aws:iam::your-account-id:role/your-role-name")
+        .roleSessionName(sessionName)
+        .policy(policy)
+        .build()
+
+    val result = stsClient.assumeRole(assumeRoleRequest)
+    val credentials = result.credentials()
+
+    return AwsSessionCredentials.create(
+        credentials.accessKeyId(),
+        credentials.secretAccessKey(),
+        credentials.sessionToken()
+    )
+}
+
+fun main() {
+val userId = "exampleUser"
+val sessionCredentials = assumeRoleForUser(userId)
+
+    val s3Client = S3Client.builder()
+        .credentialsProvider(StaticCredentialsProvider.create(sessionCredentials))
+        .region(Region.AWS_GLOBAL)
+        .build()
+
+    // 여기서 S3 클라이언트를 사용하여 S3 작업 수행
+}
+```
+
 ---
 Q35
 You are tasked with moving a legacy application from a virtual machine running inside your datacenter to an Amazon VPC.
@@ -726,6 +793,14 @@ C. An Elastic IP address on the VPC instance<br>
 D. An IP address space that does not conflict with the one on-premises<br>
 E. Entries in Amazon Route 53 that allow the Instance to resolve its dependencies' IP addresses<br>
 F. A VM Import of the current virtual machine<br>
+
+정답 : A, D, E
+
+A (AWS Direct Connect 링크): 온프레미스 네트워크와 Amazon VPC 간에 안정적이고 저지연의 전용 네트워크 연결을 제공합니다.
+
+D (IP 주소 공간 충돌 회피): VPC와 온프레미스 네트워크 간의 IP 주소 충돌을 방지하여 네트워크 통신 문제를 예방합니다.
+
+E (Amazon Route 53 엔트리): 이 옵션은 DNS 설정의 관점에서 중요합니다. Route 53을 사용하여 VPC 내의 인스턴스가 내부 의존성의 IP 주소를 올바르게 해석할 수 있도록 DNS 엔트리를 구성합니다.
 
 ---
 Q36
@@ -746,9 +821,7 @@ to dynamically size the group of hosts depending on the number of SNS notificati
 D. EBS with Provisioned IOPS (PIOPS) to store I/O files SQS to distribute elaboration commands to a group of hosts
 working in parallel Auto Scaling to dynamically size the group ot hosts depending on the length of the SQS queue. <br>
 
-정답 : A
-
-D로 고민했지만 EBS는 병렬처리에서 공유가안된다. 또한 비용 효울적이다.
+정답 : A 
 
 ---
 Q37
@@ -798,6 +871,8 @@ E. Create a new Amazon DynamoDB table each day and drop the one for the previous
 
 정답 : C, E
 
+다이나모디비는 RCU(읽기 용량 단위) WCU(쓰기 용량 단위) 따라 가격이 다릅니다. 여기서 용량 단위는 정해진 크기의 데이터를 초당 읽거나 쓸 수 있는양을 의미합니다. 그래서 SQS를 통해서 버퍼링하는게 가격에 도움이됩니다.
+
 ---
 Q39
 
@@ -821,6 +896,8 @@ mobile application.<br>
 
 정답 : C
 
+모바일이 sqs로 데이터 보내고 서버에서 AWS Mobile Push를 통해서 알람을 보내면 됩니다.
+
 ---
 Q40
 You currently operate a web application. In the AWS US-East region. The application runs on an auto-scaled layer of EC2
@@ -843,7 +920,7 @@ logs.<br>
 정답 : A
 global service로 모든 리소스에 대한 기록을 남기고, s3에 대한 제한은 버킷정책으로 컨트롤한다.
 
----
+--- 
 Q41
 Your department creates regular analytics reports from your company's log files All log data is collected in Amazon S3
 and processed by daily Amazon Elastic
@@ -862,7 +939,7 @@ Reserved Instances for Amazon Redshift.<br>
 D. Use reduced redundancy storage (RRS) for all data in Amazon S3. Add Spot Instances to Amazon EMR jobs. Use Reserved
 Instances for Amazon Redshift.<br>
 
-EMR은 하둡과 같은 데이터 처리 및 분석 플랫폼입니다.
+EMR은 하둡과 같은 데이터 처리 및 분석 플랫폼입니다. 데이터에 대해 감소된 중복 저장소(RRS)를 사용합니다.
 
 정답 : C
 
