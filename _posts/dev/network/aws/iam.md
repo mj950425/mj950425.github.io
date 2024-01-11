@@ -1,6 +1,6 @@
 # IAM
 
-### 정책
+# 정책
 
 * AWS Managed
 * Customer Managed
@@ -72,13 +72,13 @@ Access Advisior를 통해서 가장 최근에 권한을 부여받은게 언제�
 
 Access Analyzer를 통해서 외부에서 접근한적 있는 리소스를 분석할 수 있습니다.
 
-### 리소스 기반 정책
+## 리소스 기반 정책
 
-### USER, GROUP
+## USER, GROUP
 
 IAM USER, GROUP은 장기 자격증명입니다.
 
-### IAM ROLE
+## IAM ROLE
 
 반면에 IAM ROLE은 단기자격증명이며 STS를 통해서 제공받을 수 있습니다. 한번에 하나의 역할만 가질 수 있습니다.
 
@@ -117,7 +117,7 @@ A계정이 B계정의 역할을 가정하면, A에게 주어진 기존의 권한
 
 이런 경우에는 리소스기반정책을 통해서 B계정의 S3에 접근해야합니다.
 
-## IAM Access Ananlyzer
+# IAM Access Ananlyzer
 
 Zone of Trust는 AWS의 계정 또는 조직 내부를 의미합니다.
 
@@ -132,7 +132,7 @@ Acess Analzyer Policy Generation이라는 기능도 존재합니다.
 
 ![그림1](/assets/img/network/aws/iam/img_2.png)
 
-## STS
+# STS
 
 STS의 AssumeRole API를 사용하면 부여된 역할에 해당하는 임시자격증명을 받아올 수 있습니다.
 
@@ -180,7 +180,7 @@ AWS 조직 내에서 개발 및 프로덕션 환경을 위한 새 AWS 계정을 
 
 ![그림1](/assets/img/network/aws/iam/img_4.png)
 
-## Session Tags in STS
+# Session Tags in STS
 
 아래 이미지의 json과 같이 HR테그를 같이 보내줬을 때만 Assume Role을 할 수 있도록 설정이 가능합니다.
 
@@ -190,11 +190,34 @@ AWS 조직 내에서 개발 및 프로덕션 환경을 위한 새 AWS 계정을 
 
 AssumeRole, AssumeRoleWithSAML, AssumeRoleWithWebIdentity...
 
-## Identity Federation
+# Identity Federation
 
-Identity Federation 과정
+Identity Federation 과정을 살펴보면 아래와 같습니다.
+
+먼저 유저는 Idp에 로그인합니다.
+
+사전에 Idp는 AWS의 신뢰정책에 연결되어있으므로 AWS의 자원에 접근할 수 있는데, 유저의 정보를 바탕으로 credentials를 제공 받습니다.
+
+그리고 이것을 유저에게 전달하면, 유저는 해당 credentials를 가지고 aws 자원에 접근합니다.
 
 ![그림1](/assets/img/network/aws/iam/img_6.png)
+
+identity federation에는 SAML2.0, Custom Identity Broker, Web Identity Federation, SSO ..등등 다양한 방법이 존재합니다.
+
+## SAML2.0
+먼저 SAML2.0은 Security Assertion Markup Language 2.0의 약자입니다.
+
+다양한 Idp에서 사용하는 표준 규격입니다. 
+
+SAML 2.0 Federation은 옛날 방식이고 Amazon SSO가 훨씬 간단하고 최신 방법입니다.
+
+![그림1](/assets/img/network/aws/iam/img_7.png)
+
+
+
+
+
+
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= 2024-01-06 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
