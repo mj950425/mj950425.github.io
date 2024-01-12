@@ -123,7 +123,19 @@ RedissonLock의 tryAcquireAsync(long waitTime, long leaseTime, TimeUnit unit, lo
 
 leaseTime가 0보다 크므로 tryLockInnerAsync(waitTime, leaseTime, unit, threadId, RedisCommands.EVAL_LONG) 메소드를 실행합니다.
 
+![그림2](/assets/img/db/redisson/img.png)
+
 tryLockInnerAsync에 들어와보면 루아 스크립트를 확인할 수 있습니다.
+
+```
+if ((redis.call('exists', KEYS[1]) == 0) or (redis.call('hexists', KEYS[1], ARGV[2]) == 1)) then
+    redis.call('hincrby', KEYS[1], ARGV[2], 1);
+    redis.call('pexpire', KEYS[1], ARGV[1]);
+    return nil;
+end;
+return redis.call('pttl', KEYS[1]);
+
+```
 
 루아 스크립트는 네트워크 오버헤드를 최소화하기 위해 사용됩니다. 
 
@@ -150,15 +162,6 @@ ARGV[2]는 getLockName(threadId)로, 쓰레드 식별자를 나타냅니다.
 * return redis.call('pttl', KEYS[1]);
   * if문을 충족시키지 못하면, lock의 ttl을 반환합니다.
 
-```
-if ((redis.call('exists', KEYS[1]) == 0) or (redis.call('hexists', KEYS[1], ARGV[2]) == 1)) then
-    redis.call('hincrby', KEYS[1], ARGV[2], 1);
-    redis.call('pexpire', KEYS[1], ARGV[1]);
-    return nil;
-end;
-return redis.call('pttl', KEYS[1]);
-
-```
 
 ![그림2](/assets/img/db/redisson/img_3.png)
 
@@ -178,6 +181,8 @@ return redis.call('pttl', KEYS[1]);
 ![그림2](/assets/img/db/redisson/img_7.png)
 
 subscribe 내부로 진입해보면 아래와 같습니다.
+
+![그림2](/assets/img/db/redisson/img_14.png)
 
 먼저 특정 채널을 구독하고 있는 세마포어를 만듭니다.
 
