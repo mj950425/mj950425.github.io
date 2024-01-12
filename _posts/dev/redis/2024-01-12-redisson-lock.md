@@ -75,27 +75,16 @@ class DistributeLockTransactionProxy {
 ```
 # Redisson은 어떻게 tryLock 메소드를 구현했을까?
 
-결론부터 말하면 Redisson은 사실 pub sub만으로 구현되어있지는 않고, pub sub 모델과 스핀락을 함께 사용합니다.
-
 그러면 이제 redissonClient의 tryLock이 어떻게 동작하는지 하나하나 자세하게 알아보겠습니다.
 
-먼저, redissonClient.getLock(distributeLock.key)을 통해 락을 얻어옵니다.
+먼저, redissonClient.getLock(distributeLock.key)을 통해 RedissonLock을 얻어옵니다.
 
-RedissonLock은 RedissonBaseLock과 RedissonObject의 자식 클래스로, name을 가지고 entryName과 channelName을 생성합니다.
-
-아래 코드부터 확인해보겠습니다.
-```
-val rLock = redissonClient.getLock(distributeLock.key)
-```
-
-redissonClient.getLock(distributeLock.key) 메소드를 사용하여 간단하게 락 객체를 생성할 수 있습니다.
-
-redisson은 자바의 Lock 인터페이스를 상속받은 RLock 스펙의 구현체인 RedissonLock를 사용합니다.
+RedissonLock은 자바의 Lock 인터페이스 구현체이면서 RedissonBaseLock과 RedissonObject의 자식 클래스입니다.
 
 RedissonLock의 상속 구조는 아래와 같습니다.
 ![그림2](/assets/img/db/redisson/img_5.png)
 
-rLock은 distributeLock.key 값을 사용하여 락을 획득하며, 생성 과정에서 커맨드 실행기, 퍼블릭 서비스 등 여러 가지 정보를 등록합니다.
+RedissonLock은 distributeLock.key 값을 사용하여 락을 획득하며, 생성 과정에서 커맨드 실행기, 퍼블릭 서비스 등 여러 가지 정보를 등록합니다.
 
 중요한 점은 distributeLock.key 값을 RedissonObject의 name에 저장합니다.
 
@@ -107,7 +96,7 @@ rLock은 distributeLock.key 값을 사용하여 락을 획득하며, 생성 과�
 
 ![그림2](/assets/img/db/redisson/img_2.png)
 
-rLock이 tryLock 코드를 실행하면서 락을 얻으려고 시도하기 시작합니다.
+RedissonLock이 tryLock 코드를 실행하면서 락을 얻으려고 시도하기 시작합니다.
 
 ```
 return try {
@@ -118,7 +107,7 @@ return try {
         }
 ```
 
-이제 tryLock 메소드의 내부를 살펴보겠습니다.
+tryLock 메소드의 내부를 살펴보겠습니다.
 
 먼저, 쓰레드를 얼마나 대기시킬지 결정하기 위해 현재 시간을 얻습니다.
 
