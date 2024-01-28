@@ -10,8 +10,10 @@ description: >
 ---
 
 # 재고 시스템을 개발하면서 만난 장애 상황
+![img.png](/assets/img/experience/project/dbcp-problem/img_7.png)
 
 ## 개요
+
 최근 밤 늦게까지 회사 프로젝트를 진행하면서 정말 바쁘게 살아가고 있는데요. ~~개인적으로는 즐겁습니다?~~ 
 
 저는 역시 무언가 생산적인 일을 하면 행복한 것 같습니다.
@@ -31,7 +33,7 @@ description: >
 
 레디스 클라이언트로는 Redisson을 활용했습니다. Redisson은 Lettuce보다 성능이 우수하고 락을 쉽게 점유할 수 있도록 제공하기 때문에 이를 선택했습니다.
 
-레디스의 락 점유에 대한 내부 동작은 [여기](notion://www.notion.so/*%3Chttps://mj950425.github.io/db/redisson-lock/*%3E)에서 확인하실 수 있습니다.
+레디스의 락 점유에 대한 내부 동작은 [여기](https://mj950425.github.io/db/redisson-lock/)에서 확인하실 수 있습니다.
 
 특정 어노테이션이 붙은 메소드가 실행될 때, AOP가 이를 감지하고 런타임에 SpringEL을 통해 여러 키를 기준으로 락을 점유한 뒤 실제 재고 차감 메소드를 실행하도록 구성했습니다.
 
