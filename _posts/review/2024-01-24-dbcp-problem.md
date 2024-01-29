@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "재고 시스템을 개발하면서 만난 장애 상황"
+title: "재고 시스템을 개발하면서 만난 엔티티 매니저와 DBCP 관련 이슈"
 date: 2024-01-23 08:46:00 +0900
 categories:
   - experience
   - project
 description: >
-  '재고 시스템을 개발하면서 만난 장애 상황에 대한 기록입니다.'
+  '재고 시스템을 개발하면서 만난 엔티티 매니저와 DBCP 관련 이슈를 해결한 기록입니다.'
 ---
 
-# 재고 시스템을 개발하면서 만난 장애 상황
+# 재고 시스템을 개발하면서 만난 엔티티 매니저와 DBCP 관련 이슈
 ![img.png](/assets/img/experience/project/dbcp-problem/img_7.png)
 
 ## 개요
