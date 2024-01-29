@@ -10,7 +10,6 @@ description: >
 ---
 
 # 재고 시스템을 개발하면서 만난 엔티티 매니저와 DBCP 관련 이슈
-![img.png](/assets/img/experience/project/dbcp-problem/img_7.png)
 
 ## 개요
 
