@@ -8,7 +8,7 @@ description: >
   '[자바의 멀티 스레드 전체 정리] 스레드 생성부터 가상 스레드까지'
 ---
 
-# 개요
+# 자바의 멀티 스레딩 - 스레드 생성부터 가상 스레드까지
 ![img.png](/assets/img/jvm-lang/java-multi-threading/img_4.png)
 
 스레드 생성부터 가상 스레드까지 자바의 멀티스레딩에 대해서 정리해봤습니다.
