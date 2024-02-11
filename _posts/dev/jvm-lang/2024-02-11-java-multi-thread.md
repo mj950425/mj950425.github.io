@@ -1,10 +1,9 @@
 ---
 layout: post
 title: "[자바의 멀티 스레드 전체 정리] 스레드 생성부터 가상 스레드까지"
-date: 2023-12-08 08:46:00 +0900
+date: 2024-02-11 08:46:00 +0900
 categories:
-  - experience
-  - project
+  - jvm-lang
 description: >
   '[자바의 멀티 스레드 전체 정리] 스레드 생성부터 가상 스레드까지'
 ---
