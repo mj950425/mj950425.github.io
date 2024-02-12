@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "T&A 3.0 프로젝트 설계 및 구축"
-date: 2023-12-08 08:46:00 +0900
+date: 2024-01-08 08:46:00 +0900
 categories:
   - experience
   - project
