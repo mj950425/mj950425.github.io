@@ -9,7 +9,7 @@ description: >
   '투어&티켓 전체 리뉴얼 프로젝트'
 ---
 
-# 프로젝트 구축에 대한 회고
+# T&A 3.0 프로젝트 설계 및 구축
 
 ![그림1](/assets/img/experience/project/tna3-project/img_8.png)
 
