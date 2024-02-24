@@ -4,9 +4,11 @@ title: "2023년도 회고"
 date: 2024-02-12 08:46:00 +0900
 categories:
   - experience
+  - review
 description: >
   '2024년도 회고'
 ---
+
 # 2023년도 회고
 ![img.png](/assets/img/experience/review/2023/img_1.png)
 
