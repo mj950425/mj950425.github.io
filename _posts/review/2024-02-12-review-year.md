@@ -1,4 +1,17 @@
+---
+layout: post
+title: "2024년도 회고"
+date: 2024-02-12 08:46:00 +0900
+categories:
+  - experience
+description: >
+  '2024년도 회고'
+---
+# 2024년도 회고
+![img.png](/assets/img/experience/review/2023/img_1.png)
+
 # 2023 회고에 앞서서..
+
 [작년의 회고록](https://minjoon950425.tistory.com/211)을 쓰던 순간이 엊그제 같은데, 벌써 2023년의 회고를 시작한다니 시간이 참 빨리 흐른다는 것을 실감합니다.
 
 2022년은 모든 것이 새롭고 낯설었던 해였습니다. 특히, 비전공자로서의 내적인 콤플렉스를 많이 느꼈던 시기였죠.
