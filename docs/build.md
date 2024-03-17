@@ -78,9 +78,9 @@ $ cd ..
 : Find this on your repository's GitHub page.
 
 `remote_branch`
-: Either `master` for "user or organization pages", or `gh-pages` for "project pages"
+: Either `master` for "user or organization pages", or `gh-pages` for "project-annual-review pages"
 
-More on [user, organization, and project pages](https://help.github.com/articles/user-organization-and-project-pages/). -->
+More on [user, organization, and project-annual-review pages](https://help.github.com/articles/user-organization-and-project-pages/). -->
 
 
 <!-- Continue with [Advanced](advanced.md){:.heading.flip-title}

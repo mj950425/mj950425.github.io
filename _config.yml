@@ -59,8 +59,10 @@ menu:
         url: /network/
       - title: JAVA & KOTLIN
         url: /jvm-lang/
-      - title: DB
-        url: /db/
+      - title: DATABASE
+        url: /database/
+      - title: PROJECT
+        url: /project/
   - title: 책 & 강의 정리
     url: /study/
     submenu:
@@ -68,13 +70,13 @@ menu:
         url: /book/
       - title: 세미나
         url: /seminar/
-  - title: 프로젝트 경험 및 회고
+  - title: 회고
     url: /experience/
     submenu:
-      - title: 프로젝트
-        url: /project/
-      - title: 회고
-        url: /experience/
+      - title: 프로젝트 회고
+        url: /project-review/
+      - title: 연간 회고
+        url: /annual-review/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..

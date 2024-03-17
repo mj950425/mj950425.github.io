@@ -4,12 +4,13 @@ title: "[2023] 패키지 솔루션 프로젝트 회고"
 date: 2023-11-13 08:46:00 +0900
 categories:
   - experience
-  - project
+  - project-review
 description: >
   '패키지 솔루션 프로젝트에 대한 회고 글입니다.'
 ---
 
 # [2023] Package Solution Project 회고
+![그림2](/assets/img/experience/project-review/packageproject-review/img_2.png)
 
 여행 도메인의 회사에 재직중인데, 신규 프로젝트로 패키지 솔루션 백엔드 개발을 맡게 되었습니다. 
 
@@ -20,7 +21,8 @@ description: >
 TF로 참여해서 페이즈원의 대부분 기능에 대한 개발에 참여했고, 그 과정에서 겪었던 시행착오들을 적어보고자 합니다.
 
 <br/>
-![그림2](/assets/img/experience/project/packageproject-review/img_2.png)
+
+
 
 # 모듈 구조
 
@@ -84,7 +86,7 @@ api모듈이 서브 모듈로 실행의 주체인데 인프라 모듈에 대한 
 
 <br/>
 
-![그림1](/assets/img/experience/project/packageproject-review/img.png)
+![그림1](/assets/img/experience/project-review/packageproject-review/img.png)
 
 # 상세 구조
 

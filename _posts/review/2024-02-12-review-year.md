@@ -3,14 +3,13 @@ layout: post
 title: "2023년도 회고"
 date: 2024-02-12 08:46:00 +0900
 categories:
-  - experience
-  - review
+  - annual-review
 description: >
   '2023년도 회고'
 ---
 
 # 2023년도 회고
-![img.png](/assets/img/experience/review/2023/img_1.png)
+![img.png](/assets/img/experience/annual-review/2023/img_1.png)
 
 # 회고에 앞서서..
 
@@ -117,7 +116,7 @@ AWS 자격증을 취득했지만 실제로 서비스를 사용해본 경험이 �
 
 아래는 연말에 제가 받은 코멘트인데, 개발자로서 2023년도를 잘 보낸 것 같아 뿌듯합니다.
 
-![img.png](/assets/img/experience/review/2023/img_2.png)
+![img.png](/assets/img/experience/annual-review/2023/img_2.png)
 
 
 

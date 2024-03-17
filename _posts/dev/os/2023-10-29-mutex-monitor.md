@@ -29,7 +29,7 @@ cpu 가 작업을 할때는 메모리에 있는 데이터를 레지스터로 가
 
 이것을 그림으로 보면 아래와 같은데요.
 
-![그림1](/assets/img/os/mutex-monitor/img.png)
+![그림1](/assets/img/dev/os/mutex-monitor/img.png)
 
 하나의 프로세스가 sdata 를 가져와서 1을 더하고 저장한 뒤, 나머지 프로세스가 sdata 를 가져와서 1을 더한 뒤 저장하면 sdata 는 2가 되어야합니다.
 

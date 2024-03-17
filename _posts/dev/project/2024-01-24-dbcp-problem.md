@@ -3,7 +3,7 @@ layout: post
 title: "재고 시스템을 개발하면서 만난 엔티티 매니저와 DBCP 관련 이슈"
 date: 2024-01-23 08:46:00 +0900
 categories:
-  - experience
+  - dev
   - project
 description: >
   '재고 시스템을 개발하면서 만난 엔티티 매니저와 DBCP 관련 이슈를 해결한 기록입니다.'
@@ -77,7 +77,7 @@ description: >
 - <span style="color:red"> 2번 스레드 </span> : StockService는 재고 ID를 기반으로 재고를 다시 조회하고 차감합니다. 1번 스레드가 이미 차감했기 때문에 남은 재고량은 5개이고, 이를 차감하면 0개가 남습니다.
 
 그림으로 보면 아래와 같습니다.
-![img.png](/assets/img/experience/project/dbcp-problem/img_1.png)
+![img.png](/assets/img/experience/project-review/dbcp-problem/img_1.png)
 
 하지만 실제 멀티스레드 환경에서는 OptimisticLockingFailException이 발생했으며, 이는 데이터베이스 레벨에서 정합성 체크에 실패한 결과입니다. 이는 서버 장애로 이어졌습니다.
 
@@ -102,7 +102,7 @@ description: >
 - <span style="color:red"> 2번 스레드 </span> : [핵심 부분] StockService는 엔티티 매니저가 1번 트랜잭션과 공유되므로 재고 조회 시 캐싱된 값을 가져옵니다. 이때 캐싱된 값에는 재고량이 10개이므로, 10개에서 5개를 차감하여 5개가 남습니다. 결과적으로 1번 스레드의 업데이트 결과가 사라집니다.
 
 그림으로 보면 아래와 같습니다.
-![img.png](/assets/img/experience/project/dbcp-problem/img.png)
+![img.png](/assets/img/experience/project-review/dbcp-problem/img.png)
 
 ## 엔티티 매니저가 재사용된 원인은?
 엔티티 매니저가 재사용되었던 원인은 OSIV (Open Session In View) 때문이었습니다. 
@@ -111,7 +111,7 @@ JPA의 EntityManager는 Hibernate에서 Session이라고 불리며, Open Session
 
 즉, 트랜잭션이 끝나도 엔티티 매니저를 유지하겠다는 것입니다.
 
-![img.png](/assets/img/experience/project/dbcp-problem/img_2.png)
+![img.png](/assets/img/experience/project-review/dbcp-problem/img_2.png)
 
 OSIV 설정이 기본값으로 true로 설정되어 있어, 1번 트랜잭션의 엔티티 매니저가 2번 트랜잭션까지 유지되고 있었습니다. 
 
@@ -280,10 +280,10 @@ Wrapped by: org.hibernate.exception.JDBCConnectionException: Unable to acquire J
 
 마무리까지 잘 진행해서 성공적인 서비스 오픈을 기대해보겠습니다.
 
-![img.png](/assets/img/experience/project/dbcp-problem/img_3.png)
-![img.png](/assets/img/experience/project/dbcp-problem/img_4.png)
-![img.png](/assets/img/experience/project/dbcp-problem/img_5.png)
-![img.png](/assets/img/experience/project/dbcp-problem/img_6.png)
+![img.png](/assets/img/experience/project-review/dbcp-problem/img_3.png)
+![img.png](/assets/img/experience/project-review/dbcp-problem/img_4.png)
+![img.png](/assets/img/experience/project-review/dbcp-problem/img_5.png)
+![img.png](/assets/img/experience/project-review/dbcp-problem/img_6.png)
 
 
 

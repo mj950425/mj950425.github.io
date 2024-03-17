@@ -3,14 +3,14 @@ layout: post
 title: "시스템 분리에 대한 회고"
 date: 2023-12-08 08:46:00 +0900
 categories:
-  - experience
+  - dev
   - project
 description: >
   '투어&티켓 전체 리뉴얼 프로젝트'
 ---
 
 # 시스템 분리
-![그림1](/assets/img/experience/project/tna3-system-seperate/img.png)
+![그림1](/assets/img/experience/project-review/tna3-system-seperate/img.png)
 
 저는 21년도 6월부터 백앤드 개발을 시작하면서, 자바라는 언어를 처음 접해본지 2년 반정도 지난 주니어 개발자입니다.
 

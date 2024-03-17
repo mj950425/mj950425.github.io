@@ -3,7 +3,7 @@ layout: post
 title: "T&A 3.0 프로젝트 설계 및 구축"
 date: 2024-01-08 08:46:00 +0900
 categories:
-  - experience
+  - dev
   - project
 description: >
   '투어&티켓 전체 리뉴얼 프로젝트'
@@ -11,7 +11,7 @@ description: >
 
 # T&A 3.0 프로젝트 설계 및 구축
 
-![그림1](/assets/img/experience/project/tna3-project/img_8.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_8.png)
 
 T&A 3.0 프로젝트 설계 및 구축에 대한 정리 글입니다.
 
@@ -45,7 +45,7 @@ T&A 3.0 프로젝트의 도메인은 크게 캘린더, 상품, 옵션, 재고, �
 
 초기에 이를 기반으로 구축한 멀티모듈 프로젝트의 구조는 아래와 같았습니다.
 
-![그림1](/assets/img/experience/project/tna3-project/img.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img.png)
 
 하지만 개발을 진행하면서 레포지토리를 분리하는것이 오버 엔지니어링이라는 판단했고, 단일 레포지토리로 변경하는 의사결정이 이뤄졌습니다.
 
@@ -59,11 +59,11 @@ T&A 3.0 프로젝트의 도메인은 크게 캘린더, 상품, 옵션, 재고, �
 
 그림으로 보면 아래와 같습니다.
 
-![그림1](/assets/img/experience/project/tna3-project/img_1.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_1.png)
 
 실제로는 아래 사진처럼 buildSrc와 jar 형태로 제공하기위한 client-admin, client-traveler 모듈이 추가로 존재합니다.
 
-![그림1](/assets/img/experience/project/tna3-project/img_2.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_2.png)
 
 # 각 모듈의 책임
 
@@ -73,7 +73,7 @@ T&A 3.0 프로젝트의 도메인은 크게 캘린더, 상품, 옵션, 재고, �
 
 먼저 api 모듈은 표현 계층입니다.
 
-![그림1](/assets/img/experience/project/tna3-project/img_3.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_3.png)
 
 컨트롤러, 인터셉터, 리졸버 등등이 존재하며 클라이언트와 통신하는 창구 역할을 맡습니다.
 
@@ -113,7 +113,7 @@ data class A(
 
 application 모듈은 응용 계층입니다. api 모듈로부터 받은 요청을 domain 모듈에게 전달하거나 다른 도메인과 통신할 수 있게 흐름을 제어하는 역할을 맡습니다.
 
-![그림1](/assets/img/experience/project/tna3-project/img_4.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_4.png)
 
 application도 가장 바깥 패키지는 도메인을 기준으로 나누었습니다.
 
@@ -150,7 +150,7 @@ class A(
 
 domain 모듈은 핵심 비지니스 로직들을 담고 있습니다.
 
-![그림1](/assets/img/experience/project/tna3-project/img_5.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_5.png)
 
 도메인도 가장 바깥 패키지는 도메인 기준으로 분리했습니다.
 
@@ -184,7 +184,7 @@ domain 모듈은 핵심 비지니스 로직들을 담고 있습니다.
 
 하지만 이러한 흐름은 안티패턴으로 판단했고, 도메인 계층안에서 상품을 찾고 상태를 변경하는 로직들이 전부 캡슐화되어 데이터 일관성을 지켜주도록 규칙을 정했습니다.
 
-![그림1](/assets/img/experience/project/tna3-project/img_6.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_6.png)
 
 그리고 가장 바깥에 있는 infra 패키지는 각 도메인이 공통으로 사용하는 infra 기능을 담아뒀습니다.
 
@@ -198,7 +198,7 @@ domain 모듈은 핵심 비지니스 로직들을 담고 있습니다.
 
 코어 모듈은 domain이나 application이 사용할 외부 기술에 대한 interface나 전체 프로젝트에서 사용하는 enum과 util클래스를 담고 있습니다.
 
-![그림1](/assets/img/experience/project/tna3-project/img_7.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_7.png)
 
 클린 아키텍처 구조에서 가장 안쪽에 존재하므로 core라는 이름을 붙여줬습니다.
 

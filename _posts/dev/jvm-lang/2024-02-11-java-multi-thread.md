@@ -9,7 +9,7 @@ description: >
 ---
 
 # 자바의 멀티 스레딩 - 스레드 생성부터 가상 스레드까지
-![img.png](/assets/img/jvm-lang/java-multi-threading/img_4.png)
+![img.png](/assets/img/dev/jvm-lang/java-multi-threading/img_4.png)
 
 스레드 생성부터 가상 스레드까지 자바의 멀티스레딩에 대해서 정리해봤습니다.
 
@@ -819,7 +819,7 @@ public class VirtualThread {
 
 결과값은 아래와 같습니다.
 
-![img.png](/assets/img/jvm-lang/java-multi-threading/img.png)
+![img.png](/assets/img/dev/jvm-lang/java-multi-threading/img.png)
 
 ```
 스레드 이름 : VirtualThread[#21]/runnable@ForkJoinPool-1-worker-1
@@ -835,7 +835,7 @@ NUMBER_OF_VIRTUAL_THREADS를 100,000으로 늘려서 다시 실행해보면, 기
 
 다음은 블로킹 호출을 포함한 가상 스레드의 예제입니다. 가상 스레드가 플랫폼 스레드에서 분리되었다가 다시 연결되는 과정을 보여줍니다.
 
-![img.png](/assets/img/jvm-lang/java-multi-threading/img_1.png)
+![img.png](/assets/img/dev/jvm-lang/java-multi-threading/img_1.png)
 
 아래 처럼 블로킹 코드를 추가해서 가상 스레드가 플랫폼 스레드에 언마운트 되었다가 다시 마운트 되도록 코드를 재구성합니다.
 
@@ -878,7 +878,7 @@ public class VirtualThreadsWithBlockingCalls {
 
 그러면 아래 사진과 같이 처음에 마운트 되었던 스레드와 다시 마운트했을때의 플랫폼 스레드가 달라진것을 볼 수 있습니다.
 
-![img.png](/assets/img/jvm-lang/java-multi-threading/img_2.png)
+![img.png](/assets/img/dev/jvm-lang/java-multi-threading/img_2.png)
 
 # 가상 스레드의 장점
 
@@ -965,4 +965,4 @@ public class VirtualThreadsWithBlockingCalls {
 
 실험 결과, 처리 시간이 1/10로 대폭 줄어드는 것을 확인할 수 있습니다. 
 
-![img.png](/assets/img/jvm-lang/java-multi-threading/img_3.png)
+![img.png](/assets/img/dev/jvm-lang/java-multi-threading/img_3.png)

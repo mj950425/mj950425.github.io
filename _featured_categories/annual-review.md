@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: PROJECT
+title: ANNUAL REVIEW
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: project
+slug: annual-review
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  프로젝트에 대한 경험을 공유합니다. 
+  This is a annual review log.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true

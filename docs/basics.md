@@ -368,7 +368,7 @@ A project's front matter should look like:
 ~~~yml
 # file: `_projects/hyde-v2.md`
 ---
-layout:      project
+layout:      project-annual-review
 title:       Hyde v2*
 date:        2 Jan 2014
 image:

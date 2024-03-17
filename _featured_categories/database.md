@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: experience
+title: DATABASE
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: experience
+slug: database
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  회고 글을 공유합니다. 
+  This is a DB study log.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
