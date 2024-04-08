@@ -281,15 +281,6 @@ class ProductIntroductionWrapper(
 
 실제로 조회와 수정 작업에서 완벽하게 라이프사이클이 일치하는 경우는 없습니다. 하지만, 라이프사이클이 대체로 비슷한 엔티티들은 같은 애그리거트로 묶어서 관리하는 것이 성능 최적화에 유리하다고 생각했습니다.
 
-### 필요한 데이터만을 선택하여 DTO로 매핑
-
-Mybatis를 사용하는것처럼 필요한 데이터를 모은 DTO를 만들어서 매핑합니다. 예시를 들면 아래와 같습니다.
-
-List<UserSummaryDto> userSummaries = em.createQuery(
-"SELECT new package.path.UserSummaryDto(u.name, u.email) FROM User u WHERE u.status = :status", UserSummaryDto.class)
-.setParameter("status", UserStatus.ACTIVE)
-.getResultList();
-
 ## lazyToOne 어노테이션을 활용하고 추가적인 gradle plugin을 통해서 바이트 코드를 조작
 
 JPA 표준 스펙은 아니지만, 하이버네이트가 바이트 코드를 조작해서 엔티티를 강화할 수 있게 지원해줍니다.
