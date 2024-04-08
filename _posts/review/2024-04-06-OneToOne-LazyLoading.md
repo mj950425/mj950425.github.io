@@ -1,14 +1,16 @@
 ---
 layout: post
-title: "JPA OneToOne관계의 N+1 이슈"
+title: "실무에서 만난 JPA OneToOne관계의 N+1 이슈 해결"
 date: 2024-04-06 08:46:00 +0900
 categories:
   - jvm-lang
 comments: true
 ---
 
-# JPA OneToOne관계의 N+1 이슈
+# 실무에서 만난 JPA OneToOne관계의 N+1 이슈 해결
+![img.png](/assets/img/experience/onetoone-lazyloading/img_2.png)
 
+# OneToOne관계의 N+1 이슈 상황
 현재 상품 도메인을 개발하고있는데, 상품 엔티티에는 OneToOne 관계를 맺는 자식 엔티티가 11개 있습니다. 
 
 이 관계들은 모두 FetchType.LAZY로 설정되어 있지만, 실제로 Product를 조회할 때 지연 로딩이 동작하지 않았습니다.
