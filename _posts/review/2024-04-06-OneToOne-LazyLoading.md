@@ -4,6 +4,7 @@ title: "실무에서 만난 JPA OneToOne관계의 N+1 이슈 해결"
 date: 2024-04-06 08:46:00 +0900
 categories:
   - jvm-lang
+  - project
 comments: true
 ---
 
