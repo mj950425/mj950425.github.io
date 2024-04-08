@@ -8,7 +8,7 @@ categories:
 comments: true
 ---
 
-# 상품 엔티티 구조
+# JPA OneToOne관계의 N+1 이슈
 
 현재 상품 도메인을 개발하고있는데, 상품 엔티티에는 OneToOne 관계를 맺는 자식 엔티티가 11개 있습니다. 
 
