@@ -82,9 +82,7 @@ if (product.getIntroduction() != null) {
 1. 연관관계의 주인을 변경
 2. OneToOne 관계를 OneToMany로 변경
 3. 객체 참조 분리
-4. 필요한 데이터만을 선택하여 DTO로 매핑
-5. lazyToOne 어노테이션을 활용하고 추가적인 gradle plugin을 통해서 바이트 코드를 조작
-6. 하나의 테이블로 합치기
+4. lazyToOne 어노테이션을 활용하고 추가적인 gradle plugin을 통해서 바이트 코드를 조작
 
 하나씩 어떤 장단점들이 있는지 알아보겠습니다.
 
@@ -170,6 +168,12 @@ class OneToOneTest(
     }
 }
 ```
+
+아래는 위 코드의 실행 결과입니다.
+
+연관관계의 주인을 조회할때는 지연로딩이 적절하게 동작하고, select 쿼리가 한번만 나가는것을 확인할 수 있습니다.
+
+반면에 연관관계의 주인이 아닌 엔티티를 조회하면 지연로딩이 동작하지않으면서 select 쿼리가 2번이 호출되는것을 확인할 수 있습니다.
 
 ```
 =-=-=-=연관관계 주인을 통해 조회한다 시작선=-=-=-=
@@ -337,12 +341,7 @@ tasks.named('test') {
 ![img.png](/assets/img/experience/onetoone-lazyloading/img.png)
 
 하지만 이 방법은 코틀린에서 지원되지않습니다. 코틀린와 자바의 코드를 컴파일하는 방식의 차이에서 어려움이 존재하다고 합니다.
-
-https://hibernate.atlassian.net/browse/HHH-15314
-
-### 하나의 테이블로 합치기
-
-상품의 핵심 정보라면 상품 테이블 하나로 합치고, 핵심 정보가 아닌것들은 과감하게 분리하면서 연관관계를 끊습니다.
+(https://hibernate.atlassian.net/browse/HHH-15314 를 참고)
 
 # 선택한 방법
 결과적으로 저는 OneToMany로 애플리케이션 코드를 변경해서 OneToOne에서 지연로딩이 동작하지 않는 방법을 해결했습니다.
