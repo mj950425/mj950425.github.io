@@ -5,6 +5,7 @@ date: 2024-04-06 08:46:00 +0900
 categories:
   - jvm-lang
   - project
+  - dev
 comments: true
 ---
 
