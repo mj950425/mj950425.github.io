@@ -3,8 +3,7 @@ layout: post
 title: "JPA OneToOne관계의 N+1 이슈"
 date: 2024-04-06 08:46:00 +0900
 categories:
-  - network
-  - aws
+  - jvm-lang
 comments: true
 ---
 
