@@ -1,10 +1,9 @@
 ---
 layout: post
-title: "조영호님의 오프라인 DDD 세미나 정리"
+title: "조영호님의 오프라인 DDD 세미나 정리 - 1"
 date: 2024-05-19 08:46:00 +0900
 categories:
   - jvm-lang
-  - project
   - dev
   - seminar
   - experience
