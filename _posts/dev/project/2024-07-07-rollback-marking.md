@@ -18,7 +18,7 @@
 
 기존의 코드는 아래와 같습니다.
 
-```
+```java
 override fun write(items: MutableList<out Product>) {
         items.forEach {
             try {
@@ -35,7 +35,7 @@ override fun write(items: MutableList<out Product>) {
     }
 ```
 
-```
+```java
 @Service
 @Transactional
 class ProductService(
