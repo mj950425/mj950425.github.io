@@ -1,10 +1,10 @@
 # 실무에서 만난 글로벌 롤백 마킹
 
 ## 개요
+![img.png](/assets/img/dev/project/global-rollback/img_8.png)
 
 스프링의 트랜잭션 글로벌 롤백 마킹으로 인해 예상하지 못한 동작에 대한 경험을 기록합니다.
 
-![img.png](/assets/img/dev/project/global-rollback/img_8.png)
 
 ## 어떤 문제가 있었나?
 
