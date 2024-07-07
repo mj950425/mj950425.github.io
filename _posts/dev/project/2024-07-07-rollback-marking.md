@@ -98,37 +98,113 @@ ProductService의 update 메소드가 실행되고 벨리데이션에서 실패�
 ![img.png](/assets/img/dev/project/global-rollback/img_5.png)
 
 ## 그래서 문제의 원인은?
+
 트랜잭션 어드바이스에서 동작하는 스프링의 코드들중에 AbstractPlatformTransactionManager 클래스가 있습니다.
 
-해당 클래스에는 setGlobalRollbackOnParticipationFailure(boolean globalRollbackOnParticipationFailure) 라는 메소드가 있는데, 여기 위에 주석을 보면 원인을 알 수 있습니다.
+해당 클래스에는 setGlobalRollbackOnParticipationFailure(boolean globalRollbackOnParticipationFailure) 라는 시그니처의 메소드가 있습니다. 
 
+여기 주석을 보면 원인을 알 수 있습니다.
+
+```java
+/***
+	 * Set whether to globally mark an existing transaction as rollback-only
+	 * after a participating transaction failed.
+	 * <p>Default is "true": If a participating transaction (e.g. with
+	 * PROPAGATION_REQUIRED or PROPAGATION_SUPPORTS encountering an existing
+	 * transaction) fails, the transaction will be globally marked as rollback-only.
+	 * The only possible outcome of such a transaction is a rollback: The
+	 * transaction originator <i>cannot</i> make the transaction commit anymore.
+	 * <p>Switch this to "false" to let the transaction originator make the rollback
+	 * decision. If a participating transaction fails with an exception, the caller
+	 * can still decide to continue with a different path within the transaction.
+	 * However, note that this will only work as long as all participating resources
+	 * are capable of continuing towards a transaction commit even after a data access
+	 * failure: This is generally not the case for a Hibernate Session, for example;
+	 * neither is it for a sequence of JDBC insert/update/delete operations.
+	 * <p><b>Note:</b>This flag only applies to an explicit rollback attempt for a
+	 * subtransaction, typically caused by an exception thrown by a data access operation
+	 * (where TransactionInterceptor will trigger a {@code PlatformTransactionManager.rollback()}
+	 * call according to a rollback rule). If the flag is off, the caller can handle the exception
+	 * and decide on a rollback, independent of the rollback rules of the subtransaction.
+	 * This flag does, however, <i>not</i> apply to explicit {@code setRollbackOnly}
+	 * calls on a {@code TransactionStatus}, which will always cause an eventual
+	 * global rollback (as it might not throw an exception after the rollback-only call).
+	 * <p>The recommended solution for handling failure of a subtransaction
+	 * is a "nested transaction", where the global transaction can be rolled
+	 * back to a savepoint taken at the beginning of the subtransaction.
+	 * PROPAGATION_NESTED provides exactly those semantics; however, it will
+	 * only work when nested transaction support is available. This is the case
+	 * with DataSourceTransactionManager, but not with JtaTransactionManager.
+	 * @see #setNestedTransactionAllowed
+	 * @see org.springframework.transaction.jta.JtaTransactionManager
+	 */
 ```
-Set whether to globally mark an existing transaction as rollback-only after a participating transaction failed.
-Default is "true": If a participating transaction (e. g. with PROPAGATION_REQUIRED or PROPAGATION_SUPPORTS encountering an existing transaction) fails, the transaction will be globally marked as rollback-only. The only possible outcome of such a transaction is a rollback: The transaction originator cannot make the transaction commit anymore.
-Switch this to "false" to let the transaction originator make the rollback decision. If a participating transaction fails with an exception, the caller can still decide to continue with a different path within the transaction. However, note that this will only work as long as all participating resources are capable of continuing towards a transaction commit even after a data access failure: This is generally not the case for a Hibernate Session, for example; neither is it for a sequence of JDBC insert/ update/ delete operations.
-Note:This flag only applies to an explicit rollback attempt for a subtransaction, typically caused by an exception thrown by a data access operation (where TransactionInterceptor will trigger a PlatformTransactionManager. rollback() call according to a rollback rule). If the flag is off, the caller can handle the exception and decide on a rollback, independent of the rollback rules of the subtransaction. This flag does, however, not apply to explicit setRollbackOnly calls on a TransactionStatus, which will always cause an eventual global rollback (as it might not throw an exception after the rollback-only call).
-The recommended solution for handling failure of a subtransaction is a "nested transaction", where the global transaction can be rolled back to a savepoint taken at the beginning of the subtransaction. PROPAGATION_NESTED provides exactly those semantics; however, it will only work when nested transaction support is available. This is the case with DataSourceTransactionManager, but not with JtaTransactionManager.
-See Also:
-setNestedTransactionAllowed, org. springframework. transaction. jta. JtaTransactionManager
-```
 
-요약하면 아래와 같습니다.
+이를 요약하면 아래와 같습니다.
 
-기본값은 "true"로 설정되어 있으며, 참여 트랜잭션(예: PROPAGATION_REQUIRED 또는 PROPAGATION_SUPPORTS가 사용된 트랜잭션)이 실패하면 전체 트랜잭션이 롤백 상태로 마킹됩니다. 이 경우 전체 트랜잭션은 롤백만 가능하고, 커밋할 수 없습니다.
+기본값은 "true"로 설정되어 있으며, PROPAGATION_REQUIRED 또는 PROPAGATION_SUPPORTS가 사용된 참여 트랜잭션이 실패하면 전체 트랜잭션이 롤백 상태로 마킹됩니다. 
 
-이 설정을 "false"로 변경하면 참여 트랜잭션이 실패하더라도 전체 트랜잭션의 롤백 여부를 결정할 수 있습니다. 즉, 참여 트랜잭션이 실패하더라도 다른 경로로 계속 진행할 수 있습니다. 그러나 이는 모든 참여 리소스가 데이터 액세스 실패 후에도 커밋을 계속할 수 있는 경우에만 가능합니다. 예를 들어, Hibernate 세션이나 여러 JDBC 작업은 이 기능을 지원하지 않을 수 있습니다.
+이 경우 전체 트랜잭션은 롤백만 가능하고, 커밋할 수 없습니다.
 
-이 설정은 주로 데이터 액세스 작업에서 예외가 발생했을 때 적용됩니다. 설정이 꺼져 있을 경우 호출자가 예외를 처리하고 롤백 여부를 결정할 수 있습니다. 하지만 setRollbackOnly가 호출된 경우에는 항상 글로벌 롤백이 발생합니다.
+이 설정을 "false"로 변경하면 참여 트랜잭션이 실패하더라도 전체 트랜잭션의 롤백 여부를 결정할 수 있습니다. 
 
-참여 트랜잭션 실패를 처리하는 권장 방법은 "중첩 트랜잭션"을 사용하는 것입니다. 이 경우 글로벌 트랜잭션은 참여 트랜잭션 시작 시점의 세이브포인트로 롤백할 수 있습니다. PROPAGATION_NESTED가 이러한 기능을 제공하며, 이는 DataSourceTransactionManager에서 지원됩니다.
+즉, 참여 트랜잭션이 실패하더라도 다른 경로로 계속 진행할 수 있습니다. 
 
-즉 현재 저의 배치 코드는 아래처럼 동작한것이었습니다.
+그러나 이는 모든 참여 리소스가 데이터 액세스 실패 후에도 커밋을 계속할 수 있는 경우에만 가능합니다. 
+
+예를 들어, Hibernate 세션이나 여러 JDBC 작업은 이 기능을 지원하지 않을 수 있습니다.
+
+이 설정은 주로 데이터 액세스 작업에서 예외가 발생했을 때 적용됩니다. 
+
+설정이 꺼져 있을 경우 호출자가 예외를 처리하고 롤백 여부를 결정할 수 있습니다. 하지만 setRollbackOnly가 호출된 경우에는 항상
+글로벌 롤백이 발생합니다.
+
+참여 트랜잭션 실패를 처리하는 권장 방법은 "중첩 트랜잭션"을 사용하는 것입니다. 
+
+이 경우 글로벌 트랜잭션은 참여 트랜잭션 시작 시점의 세이브포인트로 롤백할 수 있습니다. 
+
+PROPAGATION_NESTED가 이러한 기능을 제공하며, 이는 DataSourceTransactionManager에서 지원됩니다.
+
+위 내용을 기반으로 저의 배치 코드를 살펴보면 아래와 같이 동작한것이었습니다.
 
 1. 자식 트랜잭션의 타겟 메소드에서 예외를 던진다.
 2. 자식 트랜잭션의 어드바이스에서 글로벌 롤백을 마킹한다.
-3. 부모 트랜잭션의 타겟 메소드에서 예외를 try catch한다.
-4. 원하는 로직을 수행한다.
-5. 부모 트랜잭션이 끝날때 어드바이스에서 글로벌 롤백이 마킹되어있는것을 확인하고 예외를 던진다.
+3. 부모 트랜잭션의 타겟 메소드에서 예외를 try catch한다. 
+4. 부모 트랜잭션이 끝날때 어드바이스에서 글로벌 롤백이 마킹되어있는것을 확인하고 예외를 던진다.
+
+코르 레벨에서 더 자세하게 살펴보겠습니다.
+
+아래는 샘플 코드입니다.
+
+```java
+@Service
+class ComplicatedRollbackService(
+    private val anotherService: AnotherService,
+) {
+    @Transactional
+    fun test() {
+        try {
+            println("test complicated rollback service")
+            anotherService.test()
+        } catch (e: Exception) {
+            println("catch exception")
+        }
+    }
+}
+```
+
+```java
+@Service
+class AnotherService {
+    @Transactional
+    fun test() {
+        println("test another service")
+        throw RuntimeException("test another service")
+    }
+}
+```
+
+해당 로직을 실행하면, AnotherService의 어드바이스에서 아래 코드가 동작합니다.
 
 ``` java 
 public abstract class AbstractPlatformTransactionManager implements PlatformTransactionManager, Serializable {
@@ -148,7 +224,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 
 ![img.png](/assets/img/dev/project/global-rollback/img.png)
 
-현재 동작 중인 EntityManager를 꺼내서 롤백을 마킹합니다.
+그리고 현재 동작 중인 EntityManager를 꺼내서 롤백을 마킹합니다.
 
 ```
 public class JpaTransactionManager extends AbstractPlatformTransactionManager implements ResourceTransactionManager, BeanFactoryAware, InitializingBean {
@@ -177,17 +253,22 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager im
         }
 ```
 
-그리고 해당 값을 기반으로 부모 어드바이스에서 예외를 던집니다.
+![img.png](/assets/img/dev/project/global-rollback/img_6.png)
+
+롤백이 마킹되고 부모 트랜잭션이 동작하게됩니다. 즉, ComplicatedRollbackService가 동작합니다.
+
+그리고 ComplicatedRollbackService 트랜잭션이 끝나면 아래와 같이 부모 트랜잭션의 어드바이스에서 예외를 던집니다.
 
 ![img.png](/assets/img/dev/project/global-rollback/img_4.png)
 
 # 마무리
 
-스프링이 isGlobalRollbackOnParticipationFailure 필드를 기본적으로 true로 설정해두기 때문에 자식 트랜잭션이 부모의 트랜잭션에 참여하더라도, 롤백 설정이 글로벌로 잡히는것을 확인할 수 있었습니다.
+스프링이 isGlobalRollbackOnParticipationFailure 필드를 기본적으로 true로 설정해두기 때문에 자식 트랜잭션이 부모의 트랜잭션에 참여하더라도, 롤백 설정이 글로벌로 잡히는것을 확인할 수
+있었습니다.
 
 기본적으로는 트랜잭션에 try catch를 거는것은 안티 패턴입니다.
 
-하지만, 레거시 시스템을 다루다보면 비지니스상으로 자식 트랜잭션에 대한 try catch가 부모 트랜잭션에서 무조건 필요한 경우가 생길 수 있습니다. 
+하지만, 레거시 시스템을 다루다보면 비지니스상으로 자식 트랜잭션에 대한 try catch가 부모 트랜잭션에서 무조건 필요한 경우가 생길 수 있습니다.
 
 이 때, isGlobalRollbackOnParticipationFailure 필드 값을 false로 바꾸거나 checked exception을 던지는 방법이 있을 것 같습니다.
 
