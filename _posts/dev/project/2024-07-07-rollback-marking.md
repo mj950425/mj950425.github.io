@@ -160,16 +160,14 @@ ProductService의 update 메소드가 실행되고 벨리데이션에서 실패�
 ```
 
 
-위 내용을 기반으로 저의 배치 코드를 살펴보면 아래와 같이 동작한것이었습니다.
+즉, 아래와 같이 동작한것이었습니다.
 
 1. 자식 트랜잭션의 타겟 메소드에서 예외를 던진다.
 2. 자식 트랜잭션의 어드바이스에서 글로벌 롤백을 마킹한다.
 3. 부모 트랜잭션의 타겟 메소드에서 예외를 try catch한다. 
 4. 부모 트랜잭션이 끝날때 어드바이스에서 글로벌 롤백이 마킹되어있는것을 확인하고 예외를 던진다.
 
-코르 레벨에서 더 자세하게 살펴보겠습니다.
-
-아래는 샘플 코드입니다.
+코르 레벨에서 더 자세하게 살펴보겠습니다. 아래는 샘플 코드입니다.
 
 ```java
 @Service
@@ -221,7 +219,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 
 그리고 현재 동작 중인 EntityManager를 꺼내서 롤백을 마킹합니다.
 
-```
+```java
 public class JpaTransactionManager extends AbstractPlatformTransactionManager implements ResourceTransactionManager, BeanFactoryAware, InitializingBean {
    ...
    
@@ -267,7 +265,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager im
 
 이 때, isGlobalRollbackOnParticipationFailure 필드 값을 false로 바꾸거나 checked exception을 던지는 방법이 있을 것 같습니다.
 
-```
+```java
 @Configuration
 public class TransactionConfig {
 
