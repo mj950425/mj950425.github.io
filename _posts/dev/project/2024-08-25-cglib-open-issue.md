@@ -1,3 +1,15 @@
+---
+layout: post
+title: "CGLIB 사용시 발생하는 NPE"
+description: "CGLIB 사용 시 발생하는 NullPointerException 해결 방법"
+date: 2024-08-25 08:46:00 +0900
+categories:
+  - jvm-lang
+  - project
+  - dev
+comments: true
+---
+
 # CGLIB 사용시 발생하는 NPE
 
 저는 현재 회사에서 Klook, 야놀자 등 20여 개의 공급사와 API를 통해 상품과 예약 정보를 연동하는 시스템을 운영하고 있습니다. 

@@ -1,3 +1,15 @@
+---
+layout: post
+title: "실무에서 만난 글로벌 롤백 마킹"
+description: "실무에서 만난 글로벌 롤백 마킹"
+date: 2024-07-07 08:46:00 +0900
+categories:
+  - jvm-lang
+  - project
+  - dev
+comments: true
+---
+
 # 실무에서 만난 글로벌 롤백 마킹
 
 ## 개요

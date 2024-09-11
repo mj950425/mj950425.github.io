@@ -63,7 +63,7 @@ menu:
         url: /database/
       - title: PROJECT
         url: /project/
-      - title: cs
+      - title: CS
         url: /cs/
   - title: 책 & 강의 정리
     url: /study/
