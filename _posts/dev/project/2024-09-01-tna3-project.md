@@ -10,7 +10,8 @@ description: >
 ---
 
 # 투어&티켓 전체 리뉴얼 프로젝트
-![그림1](/assets/img/experience/project-review/tna3-project/img_11.png)
+![그림1](/assets/img/experience/project-review/tna3-project/img_8.png)
+<br/>
 
 작년 하반기부터 올해 상반기까지 루비 기반의 시스템을 코틀린으로 컨버팅하는 T&A 3.0 프로젝트를 진행했습니다.
 
@@ -18,8 +19,6 @@ T&A 3.0 프로젝트에 대한 회고를 공유한 경험을 글로 기록했습
 
 # 개요
 
-![그림1](/assets/img/experience/project-review/tna3-project/img_8.png)
-<br/>
 저는 회사에서 투어와 티켓을 판매하는 T&A 개발팀에 속해 있으며, 이 팀은 회사 내에서 가장 큰 영업 이익을 창출하는 부서입니다.
 
 이 시스템은 10년 전에 루비로 개발되었습니다.
