@@ -302,6 +302,9 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 Calico는 Kubernetes 클러스터에서 Pod 간 네트워크 통신을 관리하는 CNI 플러그인이다.
 ```
 kubectl create -f https://raw.githubusercontent.com/k8s-1pro/install/main/ground/k8s-1.27/calico-3.26.4/calico.yaml
+```
+
+```
 kubectl create -f https://raw.githubusercontent.com/k8s-1pro/install/main/ground/k8s-1.27/calico-3.26.4/calico-custom.yaml
 ```
 
@@ -333,6 +336,22 @@ kubectl create -f https://raw.githubusercontent.com/k8s-1pro/install/main/ground
 메트릭 서버를 설치한다.
 ```
 kubectl create -f https://raw.githubusercontent.com/k8s-1pro/install/main/ground/k8s-1.27/metrics-server-0.6.3/metrics-server.yaml
+```
+
+### 파드 확인 및 대시보드 접속
+
+파드를 확인한다.
+
+```
+k get pods -A
+```
+
+파드가 전부 올라오면, 브라우저에서 대시보드에 접속한다.
+
+![img.png](../../../../assets/img/study/kubernetes/install/img_18.png)
+
+```
+https://192.168.56.30:30000/#/login
 ```
 
 # 래퍼런스
