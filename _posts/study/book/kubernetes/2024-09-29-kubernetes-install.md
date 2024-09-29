@@ -14,7 +14,7 @@ description: >
 
 # 로컬환경에 쿠버네티스를 설치하는 방법
 
-[인프런의 쿠버네티스 어나더 클래스 (지상편) - spring 1,2](https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EC%96%B4%EB%82%98%EB%8D%94-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%A7%80%EC%83%81%ED%8E%B8-sprint1/dashboard) 를 수강하면서 쿠버네티스 클러스터의 설치 과정을 조금 더 세부적으로 정리해봤습니다.
+[인프런의 쿠버네티스 어나더 클래스 (지상편) - spring 1,2](https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EC%96%B4%EB%82%98%EB%8D%94-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%A7%80%EC%83%81%ED%8E%B8-sprint1/dashboard) 를 수강하면서, 쿠버네티스 클러스터의 설치 과정을 자세하게 정리해봤습니다.
 
 제가 사용하고 있는 노트북의 환경은 아래와 같습니다.
 
