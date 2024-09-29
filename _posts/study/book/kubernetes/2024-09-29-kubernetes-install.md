@@ -198,8 +198,11 @@ sysctl --system
 
 #### containerd (컨테이너 런타임) 설치
 
-containerd와 같은 컨테이너 런타임 패키지를 제공해주는 도커 레포지토리를 yum에 등록한다.
+```
+yum install -y yum-utils
+```
 
+containerd와 같은 컨테이너 런타임 패키지를 제공해주는 도커 레포지토리를 yum에 등록한다.
 ```
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
