@@ -1,6 +1,6 @@
 ---
 layout: post
-title: “Mock vs Stub”
+title: “테스트 더블”
 date: 2025-01-27 08:46:00 +0900
 categories:
   - jvm-lang
@@ -13,7 +13,7 @@ description: >
 # 테스트 더블이란?
 
 테스트 더블(Test Double)은 테스트를 위해 실제 객체 대신 사용하는 모든 가짜 객체를 의미합니다.
-주로 아래 다섯 가지 유형으로 구분됩니다:
+주로 아래 다섯 가지 유형으로 구분됩니다.
 
 - 더미 (Dummy)
 - 스텁 (Stub)
