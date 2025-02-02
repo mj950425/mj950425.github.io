@@ -128,7 +128,7 @@ public OrderResponse execute(@PathVariable Long orderId,
 
 #### 주문 이벤트 쌓기
 
-```
+```java
 @Entity
 public class Order {
 @Transient
@@ -159,7 +159,7 @@ private List<DomainEvent> domainEvents = new ArrayList<>();
 
 #### 서비스 계층에서 트랜잭션 진행 후 이벤트 발행
 
-``` 
+```java
 @Service
 public class OrderService {
         @Transactional
@@ -178,7 +178,7 @@ public class OrderService {
 
 #### 이벤트 리스너(쿠폰 적용 등 추가 작업)
 
-```
+```java
 @Component
 public class DiscountAppliedEventListener {
     @TransactionalEventListener
