@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "대량의 UPDATE 트랜잭션 시 발생할 수 있는 문제와 해결 방안"
-date: 2024-08-11 08:46:00 +0900
+date: 2025-02-20 08:46:00 +0900
 categories:
   - database
 description: >
