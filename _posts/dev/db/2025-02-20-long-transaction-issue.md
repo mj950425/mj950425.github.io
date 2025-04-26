@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "대량의 데이터를 단일 트랜잭션에서 변경하면서 발생한 이슈"
+title: "트랜잭션이 길어지면서 발생할 수 있는 이슈"
 date: 2025-02-20 08:46:00 +0900
 categories:
   - database
