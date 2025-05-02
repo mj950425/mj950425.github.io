@@ -15,7 +15,7 @@ sidebar: true
 
 때로는 문제를 해결하는데 오래걸리지만, 이러한 과정이 언젠간 전부 도움이 되리라 강하게 믿습니다.<br>
 
-<div>제 이력서가 궁금하신분은 <a href="https://www.notion.so/e03b0a0d90e74ad181deeb5e1608c27c?pvs=4">여기</a>를 클릭해주세요</div>
+<div>제 이력서가 궁금하신분은 <a href="https://www.notion.so/1e1fb8e0ce5680f7afbdf6a8c004f055?pvs=4">여기</a>를 클릭해주세요</div>
 ## 감사합니다. 
 
 
